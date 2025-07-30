@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://m3blkassnym0"]
+
+[ext_resource type="Texture2D" uid="uid://dgw5ry7vn84ik" path="res://icon.svg" id="1_2bqu3"]
+[ext_resource type="Script" uid="uid://0i4r7o1uyryq" path="res://lil_guy.gd" id="1_i2avw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2avw"]
+size = Vector2(124, 124)
+
+[node name="LilGuy" type="Area2D"]
+script = ExtResource("1_i2avw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2bqu3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i2avw")
