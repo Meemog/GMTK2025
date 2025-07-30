@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://8yxh4i3gbno6"]
+
+[ext_resource type="Script" uid="uid://c2al3ufd8d8wb" path="res://Scripts/BulletUI/bullet_UI.gd" id="1_73t04"]
+[ext_resource type="Texture2D" uid="uid://h43o6qoaixia" path="res://Assets/bullets.png" id="1_m51wb"]
+[ext_resource type="Texture2D" uid="uid://da7jx2vwaeisd" path="res://Assets/Revolver_Chamber.png" id="2_73t04"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rsory"]
+radius = 53.0094
+
+[node name="UpdateChamberOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="BulletContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="BulletUI" type="Control" parent="VBoxContainer/MarginContainer/BulletContainer"]
+custom_minimum_size = Vector2(112, 224)
+layout_mode = 2
+script = ExtResource("1_73t04")
+
+[node name="BulletSprite" type="TextureRect" parent="VBoxContainer/MarginContainer/BulletContainer/BulletUI"]
+custom_minimum_size = Vector2(112, 224)
+layout_mode = 2
+offset_right = 112.0
+offset_bottom = 224.0
+size_flags_horizontal = 4
+texture = ExtResource("1_m51wb")
+
+[node name="DropPointDetector" type="Area2D" parent="VBoxContainer/MarginContainer/BulletContainer/BulletUI"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/MarginContainer/BulletContainer/BulletUI/DropPointDetector"]
+position = Vector2(55, 125)
+shape = SubResource("CircleShape2D_rsory")
+
+[node name="Bullet2" type="TextureRect" parent="VBoxContainer/MarginContainer/BulletContainer"]
+custom_minimum_size = Vector2(112, 224)
+layout_mode = 2
+texture = ExtResource("1_m51wb")
+
+[node name="Bullet3" type="TextureRect" parent="VBoxContainer/MarginContainer/BulletContainer"]
+custom_minimum_size = Vector2(112, 224)
+layout_mode = 2
+texture = ExtResource("1_m51wb")
+
+[node name="MarginContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Chamber" type="TextureRect" parent="VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(448, 448)
+layout_mode = 2
+texture = ExtResource("2_73t04")
+
+[connection signal="gui_input" from="VBoxContainer/MarginContainer/BulletContainer/BulletUI" to="VBoxContainer/MarginContainer/BulletContainer/BulletUI" method="_on_gui_input"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer/BulletContainer/BulletUI" to="VBoxContainer/MarginContainer/BulletContainer/BulletUI" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/MarginContainer/BulletContainer/BulletUI" to="VBoxContainer/MarginContainer/BulletContainer/BulletUI" method="_on_mouse_exited"]
+[connection signal="area_entered" from="VBoxContainer/MarginContainer/BulletContainer/BulletUI/DropPointDetector" to="VBoxContainer/MarginContainer/BulletContainer/BulletUI" method="_on_drop_point_detector_area_entered"]
+[connection signal="area_exited" from="VBoxContainer/MarginContainer/BulletContainer/BulletUI/DropPointDetector" to="VBoxContainer/MarginContainer/BulletContainer/BulletUI" method="_on_drop_point_detector_area_exited"]
