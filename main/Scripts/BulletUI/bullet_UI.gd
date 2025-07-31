@@ -1,46 +1,71 @@
 class_name BulletUI
-extends Control
+extends Node2D
 
-@onready var drop_point_detector : Area2D = $DropPointDetector
+@onready var bullet_side_view_texture: Sprite2D = $BulletSideView
+@onready var bullet_back_view_texture: Sprite2D = $BulletBackView
+@onready var collision_shape_2d: CollisionShape2D = $ClickDragArea/CollisionShape2D
 
-var hovered : bool = false
 var dragging : bool = false
-var loaded : bool = false
+
+var return_position : Vector2
+var chambers_hovering_over : Array[Chamber] = []
+
+var chambered : bool = false
+var chamber : Chamber = null
+var showing_side_view : bool = true
 
 func _ready() -> void:
-	pass
+	return_position = global_position
+	collision_shape_2d.shape = collision_shape_2d.shape.duplicate()
 
-func _process(delta: float) -> void:
-	pass
+func _physics_process(delta: float) -> void:
+	if dragging:
+		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
+	else:
+		global_position = lerp(global_position, return_position, 10 * delta)
 
 func _input(event: InputEvent) -> void:
-	
-	if dragging:
-		global_position = get_global_mouse_position() - pivot_offset
-
-func _on_mouse_entered() -> void:
-	hovered = true
-
-func _on_mouse_exited() -> void:
-	hovered = false
-
-func _on_gui_input(event: InputEvent) -> void:
-	if not hovered:
-		return
-	
-	if not dragging:
-		if event.is_action_pressed("left_mouse"):
-			pivot_offset = get_global_mouse_position() - global_position
-			dragging = true
-	elif dragging:
-		var released = event.is_action_released("left_mouse")
-		
-		if released:
-			pivot_offset = Vector2.ZERO
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			dragging = false
+			var closest_new_chamber = get_closest_chamber()
+			if closest_new_chamber:
+				closest_new_chamber.insert_bullet(self)
+			if chambered:
+				switch_view(false)
 
-func _on_drop_point_detector_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+func get_closest_chamber() -> Chamber:
+	if len(chambers_hovering_over) == 0:
+		return null
+	if len(chambers_hovering_over) == 1:
+		return chambers_hovering_over[0]
+	var closest : Area2D = chambers_hovering_over[0]
+	for i in range(1, len(chambers_hovering_over), 1):
+		if global_position.distance_to(chambers_hovering_over[i].global_position) < global_position.distance_to(closest.global_position):
+			closest = chambers_hovering_over[i]
+	return closest
 
-func _on_drop_point_detector_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
+func switch_view(side_view : bool) -> void:
+	showing_side_view = side_view
+	if side_view:
+		bullet_back_view_texture.visible = false
+		bullet_side_view_texture.visible = true
+		collision_shape_2d.shape.size = Vector2(112, 196)
+	else:
+		bullet_back_view_texture.visible = true
+		bullet_side_view_texture.visible = false
+		collision_shape_2d.shape.size = Vector2(112, 112)
+
+func _on_click_drag_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if Input.is_action_just_pressed("shoot"):
+		dragging = true
+		if chambered:
+			switch_view(true)
+
+func _on_click_drag_area_area_entered(area: Area2D) -> void:
+	if area.collision_layer == 2:
+		chambers_hovering_over.append(area)
+
+func _on_click_drag_area_area_exited(area: Area2D) -> void:
+	if area.collision_layer == 2:
+		chambers_hovering_over.erase(area)

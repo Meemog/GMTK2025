@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq2ri0uhx4c2q"]
+
+[ext_resource type="Script" uid="uid://c2al3ufd8d8wb" path="res://Scripts/BulletUI/bullet_UI.gd" id="1_a5hu0"]
+[ext_resource type="Texture2D" uid="uid://h43o6qoaixia" path="res://Assets/bullets.png" id="2_1jtwq"]
+[ext_resource type="Texture2D" uid="uid://bxe202d5ncs1p" path="res://Assets/bullet_back.png" id="3_iahu3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktg6a"]
+size = Vector2(112, 196)
+
+[node name="BulletUI" type="Node2D"]
+z_index = 1
+script = ExtResource("1_a5hu0")
+metadata/_edit_group_ = true
+
+[node name="BulletSideView" type="Sprite2D" parent="."]
+scale = Vector2(7, 7)
+texture = ExtResource("2_1jtwq")
+
+[node name="BulletBackView" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(7, 7)
+texture = ExtResource("3_iahu3")
+
+[node name="ClickDragArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDragArea"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_ktg6a")
+
+[connection signal="area_entered" from="ClickDragArea" to="." method="_on_click_drag_area_area_entered"]
+[connection signal="area_exited" from="ClickDragArea" to="." method="_on_click_drag_area_area_exited"]
+[connection signal="input_event" from="ClickDragArea" to="." method="_on_click_drag_area_input_event"]
