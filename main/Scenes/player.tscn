@@ -1,36 +1,36 @@
 [gd_scene load_steps=18 format=3 uid="uid://b1g1pjlvoxks4"]
 
-[ext_resource type="Texture2D" uid="uid://b7ytds7mwl6nb" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://djbh478p5uo2r" path="res://Scripts/player.gd" id="1_onrkg"]
-[ext_resource type="PackedScene" uid="uid://br3fu8n5ergvx" path="res://Scenes/bullet.tscn" id="2_hqtel"]
-[ext_resource type="Texture2D" uid="uid://tgpr881hjyqd" path="res://Assets/gun.png" id="3_i3pqv"]
-[ext_resource type="AudioStream" uid="uid://dxd44vgwrh235" path="res://Assets/explosion.wav" id="5_sweqy"]
-[ext_resource type="AudioStream" uid="uid://da4ubi4qkyqic" path="res://Assets/cock.mp3" id="6_2hs0m"]
-[ext_resource type="AudioStream" uid="uid://ccoi63iewrtt5" path="res://Assets/dash.wav" id="7_1jxqw"]
-[ext_resource type="AudioStream" uid="uid://vxevarck5gwi" path="res://Assets/recharge.wav" id="8_dw050"]
+[ext_resource type="Script" uid="uid://djbh478p5uo2r" path="res://Scripts/player.gd" id="1_f1ek2"]
+[ext_resource type="PackedScene" uid="uid://br3fu8n5ergvx" path="res://Scenes/bullet.tscn" id="2_tx1dd"]
+[ext_resource type="Texture2D" uid="uid://b7ytds7mwl6nb" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="4_pu2lt"]
+[ext_resource type="Texture2D" uid="uid://tgpr881hjyqd" path="res://Assets/gun.png" id="5_ukyrk"]
+[ext_resource type="AudioStream" uid="uid://dxd44vgwrh235" path="res://Assets/explosion.wav" id="6_7dp3o"]
+[ext_resource type="AudioStream" uid="uid://da4ubi4qkyqic" path="res://Assets/cock.mp3" id="7_h4iuc"]
+[ext_resource type="AudioStream" uid="uid://ccoi63iewrtt5" path="res://Assets/dash.wav" id="8_fd4e3"]
+[ext_resource type="AudioStream" uid="uid://vxevarck5gwi" path="res://Assets/recharge.wav" id="9_qqcod"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
-atlas = ExtResource("1_4flbx")
+atlas = ExtResource("4_pu2lt")
 region = Rect2(128, 192, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
-atlas = ExtResource("1_4flbx")
+atlas = ExtResource("4_pu2lt")
 region = Rect2(144, 192, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
-atlas = ExtResource("1_4flbx")
+atlas = ExtResource("4_pu2lt")
 region = Rect2(192, 192, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
-atlas = ExtResource("1_4flbx")
+atlas = ExtResource("4_pu2lt")
 region = Rect2(208, 192, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
-atlas = ExtResource("1_4flbx")
+atlas = ExtResource("4_pu2lt")
 region = Rect2(224, 192, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
-atlas = ExtResource("1_4flbx")
+atlas = ExtResource("4_pu2lt")
 region = Rect2(240, 192, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
@@ -78,7 +78,7 @@ height = 118.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_i3pqv")
+"texture": ExtResource("5_ukyrk")
 }],
 "loop": true,
 "name": &"default",
@@ -86,9 +86,9 @@ animations = [{
 }]
 
 [node name="Player" type="Area2D"]
-script = ExtResource("1_onrkg")
+script = ExtResource("1_f1ek2")
 firing_cooldown = 0.4
-bullet_scene = ExtResource("2_hqtel")
+bullet_scene = ExtResource("2_tx1dd")
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(7, 7)
@@ -109,17 +109,17 @@ offset = Vector2(33.245, 6.895)
 position = Vector2(47.8125, 0.3125)
 
 [node name="Shot" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_sweqy")
+stream = ExtResource("6_7dp3o")
 volume_db = -15.927
 
 [node name="Cock" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_2hs0m")
+stream = ExtResource("7_h4iuc")
 volume_db = -8.432
 
 [node name="Dash" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_1jxqw")
+stream = ExtResource("8_fd4e3")
 volume_db = 4.686
 
 [node name="Recharge" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_dw050")
+stream = ExtResource("9_qqcod")
 volume_db = -8.432

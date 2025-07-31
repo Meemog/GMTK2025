@@ -1,7 +1,9 @@
 extends Area2D
 
-@export var speed = 800
-@export var relative_rotation = 0
+var damage = 10
+var knockback = 1
+var travel_vector
+var speed: int
 
 func _process(delta: float) -> void:
-    position.x += speed*delta
+    position += travel_vector * speed * delta
