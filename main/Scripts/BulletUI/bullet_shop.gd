@@ -29,7 +29,15 @@ func select_new_bullet_types() -> Array[Bullet]:
 
 func instantiate_new_bullets(new_bullets : Array[Bullet]) -> void:
 	for i in range(len(new_bullets)):
-		var bullet_instance = bullet_ui.instantiate()
+		var bullet_instance : BulletUI = bullet_ui.instantiate()
 		bullet_instance.data = new_bullets[i]
 		bullet_instance.position = bullet_positions[i]
+		bullet_instance.bullet_purchased.connect(_on_bullet_purchased)
 		add_child(bullet_instance)
+
+func _on_bullet_purchased(bullet_ui : BulletUI) -> void:
+	for child in get_children():
+		if child is BulletUI:
+			if child != bullet_ui:
+				child.queue_free()
+	bullet_ui.purchased = true

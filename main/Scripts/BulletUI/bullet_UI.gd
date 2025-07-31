@@ -1,6 +1,8 @@
 class_name BulletUI
 extends Node2D
 
+signal bullet_purchased(bullet_ui : BulletUI)
+
 @onready var bullet_side_view_texture: Sprite2D = $BulletSideView
 @onready var bullet_back_view_texture: Sprite2D = $BulletBackView
 @onready var collision_shape_2d: CollisionShape2D = $ClickDragArea/CollisionShape2D
@@ -11,8 +13,12 @@ var chambers_hovering_over : Array[Chamber] = []
 var chambered : bool = false
 var chamber : Chamber = null
 var showing_side_view : bool = true
+var purchased : bool = false
 
 var data : Bullet = null
+
+var tooltip_timer : Timer = Timer.new()
+var tooltip_wait_time : float = 1.2
 
 func _ready() -> void:
 	return_position = global_position
@@ -28,6 +34,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			if dragging:
+				z_index = 1
 				var closest_new_chamber = get_closest_chamber()
 				if closest_new_chamber:
 					closest_new_chamber.insert_bullet(self)
@@ -60,7 +67,10 @@ func switch_view(side_view : bool) -> void:
 
 func _on_click_drag_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("shoot"):
+		if not purchased:
+			bullet_purchased.emit(self)
 		dragging = true
+		z_index = 10
 		if chambered:
 			switch_view(true)
 
@@ -71,3 +81,9 @@ func _on_click_drag_area_area_entered(area: Area2D) -> void:
 func _on_click_drag_area_area_exited(area: Area2D) -> void:
 	if area.collision_layer == 2:
 		chambers_hovering_over.erase(area)
+
+func _on_click_drag_area_mouse_entered() -> void:
+	Events.tooltip_requested.emit()
+
+func _on_click_drag_area_mouse_exited() -> void:
+	Events.hide_tooltop_requested.emit()

@@ -18,6 +18,7 @@ func populate() -> void:
 	for chamber in chambers:
 		var new_bullet = bullet_ui.instantiate()
 		new_bullet.data = basic_bullet.duplicate()
+		new_bullet.purchased = true
 		add_child(new_bullet)
 		chamber.insert_bullet(new_bullet)
 	print(bullets)
