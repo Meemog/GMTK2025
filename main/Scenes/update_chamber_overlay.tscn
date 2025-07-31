@@ -1,26 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://8yxh4i3gbno6"]
+[gd_scene load_steps=7 format=3 uid="uid://8yxh4i3gbno6"]
 
-[ext_resource type="PackedScene" uid="uid://dq2ri0uhx4c2q" path="res://Scenes/BulletUI/bullet_ui.tscn" id="1_5s08j"]
+[ext_resource type="Script" uid="uid://sn255n80qkuw" path="res://Scripts/BulletUI/bullet_shop.gd" id="1_xriw6"]
+[ext_resource type="Script" uid="uid://cnexkc647mh6q" path="res://Data/bullet.gd" id="2_51cbe"]
 [ext_resource type="Texture2D" uid="uid://da7jx2vwaeisd" path="res://Assets/Revolver_Chamber.png" id="2_73t04"]
+[ext_resource type="Resource" uid="uid://d31b3s2ga4wl0" path="res://Bullets/basic_bullet.tres" id="3_rsory"]
 [ext_resource type="PackedScene" uid="uid://485vay2bk2al" path="res://Scenes/BulletUI/chamber.tscn" id="4_rsory"]
 [ext_resource type="Script" uid="uid://diecs3i7dcky4" path="res://Scripts/BulletUI/revolver.gd" id="4_xriw6"]
 
 [node name="UpdateChamberOverlay" type="Node2D"]
 
-[node name="BulletManager" type="Node2D" parent="." groups=["BULLET_UI_MANAGER"]]
-
-[node name="BulletUI" parent="BulletManager" instance=ExtResource("1_5s08j")]
-position = Vector2(655, 162)
-
-[node name="BulletUI2" parent="BulletManager" instance=ExtResource("1_5s08j")]
-position = Vector2(971, 169)
-
-[node name="BulletUI3" parent="BulletManager" instance=ExtResource("1_5s08j")]
-position = Vector2(1328, 159)
+[node name="BulletShop" type="Node2D" parent="." groups=["BULLET_UI_MANAGER"]]
+script = ExtResource("1_xriw6")
+bullet_types = Array[ExtResource("2_51cbe")]([ExtResource("3_rsory")])
 
 [node name="Revolver" type="Node2D" parent="."]
 position = Vector2(959, 670)
 script = ExtResource("4_xriw6")
+basic_bullet = ExtResource("3_rsory")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Revolver"]

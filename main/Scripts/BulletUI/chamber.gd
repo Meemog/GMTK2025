@@ -1,7 +1,7 @@
 class_name Chamber
 extends Area2D
 
-signal new_bullet_inserted(new_bullet : BulletUI)
+signal new_bullet_inserted(chamber : Chamber, bullet : Bullet)
 
 var current_bullet : BulletUI = null
 var bullet_manager : Node2D = null
@@ -30,5 +30,6 @@ func insert_bullet(bullet : BulletUI) -> void:
 	bullet.return_position = self.global_position
 	bullet.chambered = true
 	bullet.chamber = self
+	bullet.switch_view(false)
 	current_bullet = bullet
-	new_bullet_inserted.emit(bullet)
+	new_bullet_inserted.emit(self, bullet.data)

@@ -6,13 +6,13 @@ extends Node2D
 @onready var collision_shape_2d: CollisionShape2D = $ClickDragArea/CollisionShape2D
 
 var dragging : bool = false
-
 var return_position : Vector2
 var chambers_hovering_over : Array[Chamber] = []
-
 var chambered : bool = false
 var chamber : Chamber = null
 var showing_side_view : bool = true
+
+var data : Bullet = null
 
 func _ready() -> void:
 	return_position = global_position
@@ -27,12 +27,13 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			if dragging:
+				var closest_new_chamber = get_closest_chamber()
+				if closest_new_chamber:
+					closest_new_chamber.insert_bullet(self)
+				if chambered:
+					switch_view(false)
 			dragging = false
-			var closest_new_chamber = get_closest_chamber()
-			if closest_new_chamber:
-				closest_new_chamber.insert_bullet(self)
-			if chambered:
-				switch_view(false)
 
 func get_closest_chamber() -> Chamber:
 	if len(chambers_hovering_over) == 0:
@@ -43,6 +44,7 @@ func get_closest_chamber() -> Chamber:
 	for i in range(1, len(chambers_hovering_over), 1):
 		if global_position.distance_to(chambers_hovering_over[i].global_position) < global_position.distance_to(closest.global_position):
 			closest = chambers_hovering_over[i]
+	chambers_hovering_over = []
 	return closest
 
 func switch_view(side_view : bool) -> void:
