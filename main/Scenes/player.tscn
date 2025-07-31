@@ -110,7 +110,7 @@ position = Vector2(47.8125, 0.3125)
 
 [node name="Shot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_sweqy")
-volume_db = -8.432
+volume_db = -15.927
 
 [node name="Cock" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_2hs0m")
