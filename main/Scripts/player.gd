@@ -3,6 +3,7 @@ extends Area2D
 
 @export var speed = 400
 @export var dash_cooldown = 4
+@export var reload_time = 2
 @export var firing_cooldown = 0.3
 @export var dash_distance = 400
 @export var bullet_scene: PackedScene
@@ -16,8 +17,10 @@ var mouse_location
 var gun_rotation
 var can_dash = true
 var can_fire = true
+var is_reloading = false
 var time_since_shot = firing_cooldown
 var time_since_dash = dash_cooldown
+var time_since_reload = reload_time
 
 # Player stats
 var health : float = 3.0
@@ -60,7 +63,7 @@ func _process(delta: float) -> void:
     $GunSprite.rotation = gun_rotation
     $GunSprite.scale.y = abs($GunSprite.scale.y) * -1 if (gun_rotation > PI/2 or gun_rotation < -PI/2) else abs($GunSprite.scale.y)
     
-    if Input.is_action_just_pressed("shoot") and time_since_shot > firing_cooldown:
+    if Input.is_action_just_pressed("shoot") and time_since_shot > firing_cooldown and not is_reloading:
         
         # get bullet information
         var current_bullet = bullets[bullet_pointer]
@@ -85,9 +88,7 @@ func _process(delta: float) -> void:
         # increment bullet pointer
         bullet_pointer += 1
         if bullet_pointer >= 6:
-            bullet_pointer = 0
-        
-        
+            start_reload()
 
     # Dash
     if Input.is_action_just_pressed("dash") and can_dash:
@@ -112,6 +113,17 @@ func _process(delta: float) -> void:
         if time_since_shot > firing_cooldown-0.1:
             $Cock.play()
             can_fire = true
+    
+    if is_reloading:
+        time_since_reload += delta
+        if time_since_reload >= reload_time:
+            is_reloading = false
+            reload.emit()
+        
+func start_reload():
+    bullet_pointer = 0
+    time_since_reload = 0
+    is_reloading = true
 
 func take_damage(damage : float) -> void:
     health -= damage

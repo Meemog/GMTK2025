@@ -16,7 +16,9 @@ func fill_bullets():
 
 func _on_fired():
     barrels[player.bullet_pointer].texture = null
+    $Barrel.rotation -= PI/3
 
 func _on_reload():
     fill_bullets()
+    $Barrel.rotation = 0
     
