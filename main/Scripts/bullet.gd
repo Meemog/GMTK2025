@@ -20,7 +20,7 @@ func flying() -> void:
 
 func hit(target : Enemy) -> void:
     if target not in has_hit:
-        target.take_damage(damage)
+        target.take_damage(data.damage)
         target.process_knockback(knockback, travel_vector)
         has_hit.append(target)
         data.hit(target)

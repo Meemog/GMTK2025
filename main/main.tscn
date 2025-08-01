@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvec1d7cq015b"]
+[gd_scene load_steps=9 format=3 uid="uid://cvec1d7cq015b"]
 
 [ext_resource type="Script" uid="uid://ctmpka1t8gdma" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ciwp82oi167xb" path="res://Scenes/main_menu.tscn" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ce8yfchqb6ixj" path="res://Scenes/enemy_spawn_manager.tscn" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dxrlycp27hmfj" path="res://Scenes/ammo_count.tscn" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://8yxh4i3gbno6" path="res://Scenes/update_chamber_overlay.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://cufid62j5hh0t" path="res://Scenes/wave_counter.tscn" id="8_5vw27"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
@@ -23,5 +24,7 @@ zoom = Vector2(0.76, 0.76)
 [node name="MainMenu" parent="UiManager" instance=ExtResource("2_0xm2m")]
 
 [node name="UpdateChamberOverlay" parent="UiManager" instance=ExtResource("6_272bh")]
+
+[node name="WaveCounter" parent="UiManager" instance=ExtResource("8_5vw27")]
 
 [connection signal="play_btn_clicked" from="UiManager/MainMenu" to="." method="_on_main_menu_play_btn_clicked"]
