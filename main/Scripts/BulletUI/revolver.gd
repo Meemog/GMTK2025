@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func populate(player_bullets : Array[Bullet]) -> void:
     for i in range(len(chambers)):
+        chambers[i].clear_chamber()
         var new_bullet = bullet_ui.instantiate()
         new_bullet.data = player_bullets[i]
         new_bullet.purchased = true

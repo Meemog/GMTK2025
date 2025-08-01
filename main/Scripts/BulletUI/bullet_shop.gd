@@ -18,6 +18,9 @@ func _ready() -> void:
 
 func refresh_shop() -> void:
     var new_bullets = select_new_bullet_types()
+    for child in get_children():
+        if child is BulletUI:
+            child.queue_free()
     instantiate_new_bullets(new_bullets)
 
 func select_new_bullet_types() -> Array[Bullet]:
@@ -40,5 +43,6 @@ func _on_bullet_purchased(bullet_ui : BulletUI) -> void:
     for child in get_children():
         if child is BulletUI:
             if child != bullet_ui:
+                print("deleting bullet!")
                 child.queue_free()
     bullet_ui.purchased = true

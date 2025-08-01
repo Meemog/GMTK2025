@@ -3,6 +3,7 @@ extends Control
 
 @export var player : Player
 @onready var revolver: Revolver = $Revolver
+@onready var bullet_shop: BulletShop = $BulletShop
 
 var is_visable : bool = true
 var tween : Tween
@@ -22,6 +23,7 @@ func open_overlay() -> void:
         await ready
     
     show_overlay()
+    bullet_shop.refresh_shop()
     if player:
         revolver.populate(player.bullets)
 

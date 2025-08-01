@@ -10,6 +10,12 @@ func _ready() -> void:
     # Needs to be a Node with the group "BULLET_UI_MANAGER" for Chamber not to throw error
     bullet_manager = get_tree().get_nodes_in_group("BULLET_UI_MANAGER")[0]
 
+func clear_chamber() -> void:
+    current_bullet = null
+    for child in get_children():
+        if child is BulletUI:
+            child.queue_free()
+
 func insert_bullet(bullet : BulletUI) -> void:
     # This works but holy shit it is dirty!!! Oscar fixed :3
     if current_bullet:

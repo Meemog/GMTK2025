@@ -12,10 +12,10 @@ func _process(delta: float) -> void:
     position += travel_vector * speed * delta
 
 func shoot(player : Player) -> void:
-    pass
+    data.shoot(player)
 
 func flying() -> void:
-    pass
+    data.flying()
 
 func hit(target : Node2D) -> void:
     data.hit(target)

@@ -25,6 +25,7 @@ func deal_damage(target : Player) -> void:
     die()
 
 func die() -> void:
+    Events.enemy_died.emit()
     queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
