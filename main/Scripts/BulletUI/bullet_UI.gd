@@ -80,11 +80,11 @@ func _on_click_drag_area_input_event(viewport: Node, event: InputEvent, shape_id
             switch_view(true)
 
 func _on_click_drag_area_area_entered(area: Area2D) -> void:
-    if area.collision_layer == 2:
+    if area.collision_layer == 4:
         chambers_hovering_over.append(area)
 
 func _on_click_drag_area_area_exited(area: Area2D) -> void:
-    if area.collision_layer == 2:
+    if area.collision_layer == 4:
         chambers_hovering_over.erase(area)
 
 func _on_click_drag_area_mouse_entered() -> void:
