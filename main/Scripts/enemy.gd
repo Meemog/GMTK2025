@@ -1,3 +1,4 @@
+class_name Enemy
 extends RigidBody2D
 
 var player: Node
@@ -17,6 +18,7 @@ func take_damage(damage : float) -> void:
     hitpoints -= damage
     if hitpoints <= 0:
         die()
+    print("Speed: "+str(speed))
 
 func deal_damage(target : Player) -> void:
     target.take_damage(damage)
