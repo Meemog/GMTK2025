@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Bullet" load_steps=4 format=3 uid="uid://bysinuf6v87fg"]
+
+[ext_resource type="Texture2D" uid="uid://b0rmwnmhw0khf" path="res://Assets/ice_bullet_back.png" id="1_1dmss"]
+[ext_resource type="Script" uid="uid://cnexkc647mh6q" path="res://Data/bullet.gd" id="1_m3qjl"]
+[ext_resource type="Texture2D" uid="uid://dwurnhne2ssh6" path="res://Assets/ice_bullet_side.png" id="3_e6muv"]
+
+[resource]
+script = ExtResource("1_m3qjl")
+name = "Ice Bullet"
+damage = 4.0
+knockback = 10.0
+speed = 10.0
+description = "Slows Enemies"
+side_view_texture = ExtResource("3_e6muv")
+back_view_texture = ExtResource("1_1dmss")
+metadata/_custom_type_script = "uid://cnexkc647mh6q"

@@ -24,6 +24,11 @@ func _ready() -> void:
 	return_position = global_position
 	collision_shape_2d.shape = collision_shape_2d.shape.duplicate()
 
+func init() -> void:
+	if data:
+		bullet_side_view_texture.texture = data.side_view_texture
+		bullet_back_view_texture.texture = data.back_view_texture
+
 func _physics_process(delta: float) -> void:
 	if dragging:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)

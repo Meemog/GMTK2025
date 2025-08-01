@@ -13,22 +13,23 @@ func _process(delta: float) -> void:
 	pass
 
 func hide_overlay() -> void:
+	is_visable = false
+	if tween:
+		tween.kill()
+	
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, fade_seconds)
 	tween.tween_callback(hide)
 
-#func _on_hide_tooltip_requested() -> void:
-	#is_visable = false
-	#if tween:
-		#tween.kill()
-	#
-	#get_tree().create_timer(fade_seconds, false).timeout.connect(hide_animation)
-#
-#func hide_animation() -> void:
-	#if not is_visable:
-		#tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		#tween.tween_property(self, "modulate", Color.TRANSPARENT, fade_seconds)
-		#tween.tween_callback(hide)
+func show_overlay() -> void:
+	is_visable = true
+	if tween:
+		tween.kill()
+	
+	#global_position = get_global_mouse_position()
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_callback(show)
+	tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)
 
 func _on_chamber_update_completed() -> void:
 	hide_overlay()

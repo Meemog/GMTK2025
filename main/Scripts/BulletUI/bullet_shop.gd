@@ -34,6 +34,7 @@ func instantiate_new_bullets(new_bullets : Array[Bullet]) -> void:
 		bullet_instance.position = bullet_positions[i]
 		bullet_instance.bullet_purchased.connect(_on_bullet_purchased)
 		add_child(bullet_instance)
+		bullet_instance.init()
 
 func _on_bullet_purchased(bullet_ui : BulletUI) -> void:
 	for child in get_children():
