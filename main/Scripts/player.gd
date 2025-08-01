@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
     position += velocity * delta
     
     # Gun
-    mouse_location = get_viewport().get_mouse_position()
+    mouse_location = get_global_mouse_position()
     gun_rotation = atan2(mouse_location.y - (position.y + 37), mouse_location.x - position.x)
     $GunSprite.rotation = gun_rotation
     $GunSprite.scale.y = abs($GunSprite.scale.y) * -1 if (gun_rotation > PI/2 or gun_rotation < -PI/2) else abs($GunSprite.scale.y)
