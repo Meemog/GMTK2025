@@ -10,10 +10,11 @@ enum State {MENU, PAUSED, CHAMBERING, LIVE, NULL}
 @export var ammo_counter_scene: PackedScene
 @onready var update_chamber_overlay: UpdateChamberOverlay = $UiManager/UpdateChamberOverlay
 @export var enemy_speed = 8
-var current_round : int = 1
 
+var current_round : int = 1
 var state = State.MENU
 var prev_state = State.NULL
+var player: Player
 
 func _ready() -> void:
     update_chamber_overlay.close_overlay()
@@ -27,7 +28,7 @@ func _on_main_menu_play_btn_clicked() -> void:
     $UiManager/MainMenu.hide()
     
     # Do logic for setting up game
-    var player = player_scene.instantiate()
+    player = player_scene.instantiate()
     add_child(player)
     
     update_chamber_overlay.player = player
@@ -65,3 +66,4 @@ func _on_round_ended() -> void:
 func _on_chamber_update_completed() -> void:
     current_round += 1
     Events.new_round_started.emit(current_round)
+    player.start_reload()
