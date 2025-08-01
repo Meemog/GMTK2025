@@ -6,8 +6,10 @@ extends Area2D
 @export var firing_cooldown = 0.3
 @export var dash_distance = 400
 @export var bullet_scene: PackedScene
-
 @export var bullets : Array[Bullet] = []
+
+signal fired()
+signal reload()
 
 var bullet_pointer : int = 0
 var mouse_location
@@ -73,15 +75,19 @@ func _process(delta: float) -> void:
         bullet.travel_vector = bullet_vector
         bullet.data = bullets[bullet_pointer]
         add_sibling(bullet)
+        
         bullet.data.shoot(self)
         $Shot.play()
         time_since_shot = 0
         can_fire = false
+        fired.emit()
         
         # increment bullet pointer
         bullet_pointer += 1
         if bullet_pointer >= 6:
             bullet_pointer = 0
+        
+        
 
     # Dash
     if Input.is_action_just_pressed("dash") and can_dash:

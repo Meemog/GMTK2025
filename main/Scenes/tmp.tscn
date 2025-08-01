@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1u2aayf85c5c"]
+[gd_scene load_steps=9 format=3 uid="uid://c1u2aayf85c5c"]
 
 [ext_resource type="PackedScene" uid="uid://b1g1pjlvoxks4" path="res://Scenes/player.tscn" id="1_4dk5s"]
 [ext_resource type="Script" uid="uid://cc7w7ardd7vfi" path="res://Scripts/tmp.gd" id="1_vt2gi"]
 [ext_resource type="PackedScene" uid="uid://baaui1378vxx6" path="res://Scenes/enemy.tscn" id="2_vt2gi"]
 [ext_resource type="PackedScene" uid="uid://ce8yfchqb6ixj" path="res://Scenes/enemy_spawn_manager.tscn" id="3_xd06i"]
 [ext_resource type="PackedScene" uid="uid://8yxh4i3gbno6" path="res://Scenes/update_chamber_overlay.tscn" id="4_co08v"]
+[ext_resource type="Script" uid="uid://cnexkc647mh6q" path="res://Data/bullet.gd" id="5_xwt7a"]
+[ext_resource type="Resource" uid="uid://bysinuf6v87fg" path="res://Bullets/ice_bullet.tres" id="6_ieg5i"]
+[ext_resource type="Resource" uid="uid://d31b3s2ga4wl0" path="res://Bullets/basic_bullet.tres" id="7_k18ce"]
 
 [node name="tmp" type="Node2D"]
 script = ExtResource("1_vt2gi")
@@ -15,6 +18,7 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_4dk5s")]
 position = Vector2(945, 525)
+bullets = Array[ExtResource("5_xwt7a")]([ExtResource("6_ieg5i"), ExtResource("6_ieg5i"), ExtResource("6_ieg5i"), ExtResource("7_k18ce"), ExtResource("7_k18ce"), ExtResource("7_k18ce")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
