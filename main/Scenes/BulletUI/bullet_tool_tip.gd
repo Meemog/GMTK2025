@@ -23,7 +23,8 @@ func _ready() -> void:
     hide()
 
 func _process(delta: float) -> void:
-    pass
+    var mouse_location = get_viewport().get_mouse_position()
+    position = mouse_location
 
 func _on_tooltip_requested(bullet : Bullet) -> void:
     is_visable = true

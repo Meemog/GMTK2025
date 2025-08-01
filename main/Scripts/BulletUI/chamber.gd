@@ -11,10 +11,9 @@ func _ready() -> void:
     bullet_manager = get_tree().get_nodes_in_group("BULLET_UI_MANAGER")[0]
 
 func insert_bullet(bullet : BulletUI) -> void:
-    # This works but holy shit it is dirty!!! Oscar plz fix when possible!
+    # This works but holy shit it is dirty!!! Oscar fixed :3
     if current_bullet:
         if bullet.chambered:
-            current_bullet.reparent(bullet.chamber)
             current_bullet.return_position = bullet.return_position
             current_bullet.chambered = true
             current_bullet.chamber = bullet.chamber
@@ -32,4 +31,10 @@ func insert_bullet(bullet : BulletUI) -> void:
     bullet.chamber = self
     bullet.switch_view(false)
     current_bullet = bullet
+    if current_bullet:
+        if bullet.chambered:
+            current_bullet.reparent(bullet.chamber)
+            
     new_bullet_inserted.emit(self, bullet.data)
+    
+    
