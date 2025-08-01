@@ -17,6 +17,7 @@ var time_since_dash = dash_cooldown
 
 func _ready() -> void:
     $BodySprite.play()
+    print(bullets[0].back_view_texture)
 
 func _process(delta: float) -> void:
 
