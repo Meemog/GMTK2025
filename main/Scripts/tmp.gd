@@ -3,7 +3,7 @@ extends Node2D
 @onready var update_chamber_overlay: UpdateChamberOverlay = $CanvasLayer/UpdateChamberOverlay
 
 @export var enemy_scene: PackedScene
-@export var enemy_speed = 200
+@export var enemy_speed = 8
 
 var current_round : int = 1
 
