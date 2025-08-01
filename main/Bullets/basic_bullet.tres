@@ -10,7 +10,8 @@ name = "Basic Bullet"
 damage = 10.0
 knockback = 10.0
 speed = 10.0
-description = ""
+description = "Simple and Effective
+"
 side_view_texture = ExtResource("3_2mpsp")
 back_view_texture = ExtResource("1_874rl")
 metadata/_custom_type_script = "uid://cnexkc647mh6q"

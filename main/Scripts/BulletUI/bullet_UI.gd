@@ -88,7 +88,7 @@ func _on_click_drag_area_area_exited(area: Area2D) -> void:
 		chambers_hovering_over.erase(area)
 
 func _on_click_drag_area_mouse_entered() -> void:
-	Events.tooltip_requested.emit()
+	Events.tooltip_requested.emit(data)
 
 func _on_click_drag_area_mouse_exited() -> void:
 	Events.hide_tooltop_requested.emit()
