@@ -4,6 +4,9 @@ signal change_state(state: State)
 
 enum State {MENU, PAUSED, CHAMBERING, LIVE, NULL}
 
+@export var player_scene: PackedScene
+@export var enemy_scene: PackedScene
+
 var state = State.MENU
 var prev_state = State.NULL
 
@@ -16,6 +19,14 @@ func _on_main_menu_play_btn_clicked() -> void:
     $UiManager/MainMenu.hide()
     
     # Do logic for setting up game
+    var player = player_scene.instantiate()
+    add_child(player)
+    
+    var enemy = enemy_scene.instantiate()
+    enemy.player = player
+    enemy.speed = 200
+    enemy.position = Vector2(-400, 400)
+    add_child(enemy)
     
     # Set State
     set_state(State.LIVE)
