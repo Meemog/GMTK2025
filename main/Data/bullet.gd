@@ -8,6 +8,7 @@ enum EFFECT_TYPE {ICE, FIRE, BLEED}
 @export var damage : float
 @export var knockback : float
 @export var speed : float
+@export var piercing : bool = false
 @export_multiline var description : String
 
 @export_group("Bullet Visuals")
@@ -18,6 +19,7 @@ enum EFFECT_TYPE {ICE, FIRE, BLEED}
 @export var has_effect : bool = false
 @export var effect_duration : float = 2.0
 @export var effect_particle : Texture
+@export var time_between_flying_effect : float = 1.0
 
 var status_effect_node_scene : PackedScene = preload("res://Scenes/status_effect_node.tscn")
 

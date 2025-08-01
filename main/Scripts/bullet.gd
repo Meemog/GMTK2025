@@ -24,6 +24,8 @@ func hit(target : Enemy) -> void:
         target.process_knockback(knockback, travel_vector)
         has_hit.append(target)
         data.hit(target)
+        if not data.piercing:
+            queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
     if area.collision_layer == 1:

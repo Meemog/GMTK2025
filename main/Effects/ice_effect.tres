@@ -4,6 +4,4 @@
 
 [resource]
 script = ExtResource("1_rhp81")
-type = 0
-expire_time = 4.0
 metadata/_custom_type_script = "uid://bvvfv5mcf77qm"

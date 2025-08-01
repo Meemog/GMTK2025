@@ -62,8 +62,7 @@ func _process(delta: float) -> void:
         
         # get bullet information
         var current_bullet = bullets[bullet_pointer]
-        var bullet_speed = 400
-        #var bullet_speed = current_bullet.speed
+        var bullet_speed = current_bullet.speed
         
         # fire
         var bullet_vector = Vector2.ONE.rotated(gun_rotation - PI/4)
@@ -74,6 +73,7 @@ func _process(delta: float) -> void:
         bullet.travel_vector = bullet_vector
         bullet.data = bullets[bullet_pointer]
         add_sibling(bullet)
+        bullet.data.shoot(self)
         $Shot.play()
         time_since_shot = 0
         can_fire = false
