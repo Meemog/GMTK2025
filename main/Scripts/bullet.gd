@@ -1,3 +1,4 @@
+class_name BulletProjectile
 extends Area2D
 
 var damage = 10

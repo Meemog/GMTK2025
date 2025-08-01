@@ -17,6 +17,9 @@ var can_fire = true
 var time_since_shot = firing_cooldown
 var time_since_dash = dash_cooldown
 
+# Player stats
+var health : float = 3.0
+
 func _ready() -> void:
     $BodySprite.play()
     print(bullets[0].back_view_texture)
@@ -58,8 +61,10 @@ func _process(delta: float) -> void:
     if Input.is_action_just_pressed("shoot") and time_since_shot > firing_cooldown:
         
         # get bullet information
-        var bullet_speed = 800
         print("Current Bullet : "+str(bullet_pointer)+", "+str(bullets[bullet_pointer]))
+        var current_bullet = bullets[bullet_pointer]
+        var bullet_speed = 400
+        #var bullet_speed = current_bullet.speed
         
         # fire
         var bullet_vector = Vector2.ONE.rotated(gun_rotation - PI/4)
@@ -101,3 +106,11 @@ func _process(delta: float) -> void:
         if time_since_shot > firing_cooldown-0.1:
             $Cock.play()
             can_fire = true
+
+func take_damage(damage : float) -> void:
+    health -= damage
+    if health <= 0:
+        die()
+    
+func die() -> void:
+    print("You are dead!!!")
