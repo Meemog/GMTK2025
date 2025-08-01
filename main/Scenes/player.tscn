@@ -88,6 +88,7 @@ animations = [{
 }]
 
 [node name="Player" type="Area2D"]
+collision_layer = 8
 script = ExtResource("1_f1ek2")
 firing_cooldown = 0.4
 bullet_scene = ExtResource("2_tx1dd")

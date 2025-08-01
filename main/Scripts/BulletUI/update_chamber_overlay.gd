@@ -10,7 +10,7 @@ var tween : Tween
 var fade_seconds : float = 0.2
 
 func _ready() -> void:
-    assert(player)
+    #assert(player)
     Events.chamber_update_completed.connect(_on_chamber_update_completed)
     open_overlay()
 
@@ -22,7 +22,8 @@ func open_overlay() -> void:
         await ready
     
     show_overlay()
-    revolver.populate(player.bullets)
+    if player:
+        revolver.populate(player.bullets)
 
 func close_overlay() -> void:
     hide_overlay()
@@ -47,4 +48,8 @@ func show_overlay() -> void:
     tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)
 
 func _on_chamber_update_completed() -> void:
+    
+    if player:
+        player.bullets = revolver.bullets
+    
     hide_overlay()

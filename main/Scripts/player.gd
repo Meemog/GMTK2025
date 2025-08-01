@@ -6,14 +6,19 @@ extends Area2D
 @export var firing_cooldown = 0.3
 @export var dash_distance = 400
 @export var bullet_scene: PackedScene
+
 @export var bullets : Array[Bullet] = []
 
+var bullet_pointer : int = 0
 var mouse_location
 var gun_rotation
 var can_dash = true
 var can_fire = true
 var time_since_shot = firing_cooldown
 var time_since_dash = dash_cooldown
+
+# Player stats
+var health : float = 3.0
 
 func _ready() -> void:
     $BodySprite.play()
@@ -54,8 +59,12 @@ func _process(delta: float) -> void:
     $GunSprite.scale.y = abs($GunSprite.scale.y) * -1 if (gun_rotation > PI/2 or gun_rotation < -PI/2) else abs($GunSprite.scale.y)
     
     if Input.is_action_just_pressed("shoot") and time_since_shot > firing_cooldown:
+        
         # get bullet information
-        var bullet_speed = 800
+        print("Current Bullet : "+str(bullet_pointer)+", "+str(bullets[bullet_pointer]))
+        var current_bullet = bullets[bullet_pointer]
+        var bullet_speed = 400
+        #var bullet_speed = current_bullet.speed
         
         # fire
         var bullet_vector = Vector2.ONE.rotated(gun_rotation - PI/4)
@@ -68,6 +77,11 @@ func _process(delta: float) -> void:
         $Shot.play()
         time_since_shot = 0
         can_fire = false
+        
+        # increment bullet pointer
+        bullet_pointer += 1
+        if bullet_pointer >= 6:
+            bullet_pointer = 0
 
     # Dash
     if Input.is_action_just_pressed("dash") and can_dash:
@@ -92,4 +106,11 @@ func _process(delta: float) -> void:
         if time_since_shot > firing_cooldown-0.1:
             $Cock.play()
             can_fire = true
-            
+
+func take_damage(damage : float) -> void:
+    health -= damage
+    if health <= 0:
+        die()
+    
+func die() -> void:
+    print("You are dead!!!")
