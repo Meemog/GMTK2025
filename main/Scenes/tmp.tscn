@@ -12,5 +12,7 @@ enemy_scene = ExtResource("2_vt2gi")
 [node name="Player" parent="." instance=ExtResource("1_4dk5s")]
 position = Vector2(945, 525)
 
-[node name="UpdateChamberOverlay" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_co08v")]
-player = NodePath("../Player")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UpdateChamberOverlay" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_co08v")]
+player = NodePath("../../Player")
