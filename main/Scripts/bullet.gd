@@ -2,9 +2,10 @@ class_name BulletProjectile
 extends Area2D
 
 var damage = 10
-var knockback = 1
+var knockback = 15
 var travel_vector
 var speed: int
+var has_hit: Array[Enemy] = []
 
 var data : Bullet 
 
@@ -17,8 +18,12 @@ func shoot(player : Player) -> void:
 func flying() -> void:
     data.flying()
 
-func hit(target : Node2D) -> void:
-    data.hit(target)
+func hit(target : Enemy) -> void:
+    if target not in has_hit:
+        target.take_damage(damage)
+        target.process_knockback(knockback, travel_vector)
+        has_hit.append(target)
+        data.hit(target)
 
 func _on_area_entered(area: Area2D) -> void:
     if area.collision_layer == 1:

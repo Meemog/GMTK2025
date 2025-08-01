@@ -61,7 +61,6 @@ func _process(delta: float) -> void:
     if Input.is_action_just_pressed("shoot") and time_since_shot > firing_cooldown:
         
         # get bullet information
-        print("Current Bullet : "+str(bullet_pointer)+", "+str(bullets[bullet_pointer]))
         var current_bullet = bullets[bullet_pointer]
         var bullet_speed = 400
         #var bullet_speed = current_bullet.speed
