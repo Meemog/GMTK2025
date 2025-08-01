@@ -7,29 +7,29 @@ var current_bullet : BulletUI = null
 var bullet_manager : Node2D = null
 
 func _ready() -> void:
-	# Needs to be a Node with the group "BULLET_UI_MANAGER" for Chamber not to throw error
-	bullet_manager = get_tree().get_nodes_in_group("BULLET_UI_MANAGER")[0]
+    # Needs to be a Node with the group "BULLET_UI_MANAGER" for Chamber not to throw error
+    bullet_manager = get_tree().get_nodes_in_group("BULLET_UI_MANAGER")[0]
 
 func insert_bullet(bullet : BulletUI) -> void:
-	# This works but holy shit it is dirty!!! Oscar plz fix when possible!
-	if current_bullet:
-		if bullet.chambered:
-			current_bullet.reparent(bullet.chamber)
-			current_bullet.return_position = bullet.return_position
-			current_bullet.chambered = true
-			current_bullet.chamber = bullet.chamber
-			bullet.chamber.current_bullet = current_bullet
-		else:
-			current_bullet.switch_view(true)
-			current_bullet.return_position = bullet.return_position
-			current_bullet.reparent(bullet_manager)
-	else:
-		if bullet.chambered:
-			bullet.chamber.current_bullet = null
-	bullet.reparent(self)
-	bullet.return_position = self.global_position
-	bullet.chambered = true
-	bullet.chamber = self
-	bullet.switch_view(false)
-	current_bullet = bullet
-	new_bullet_inserted.emit(self, bullet.data)
+    # This works but holy shit it is dirty!!! Oscar plz fix when possible!
+    if current_bullet:
+        if bullet.chambered:
+            current_bullet.reparent(bullet.chamber)
+            current_bullet.return_position = bullet.return_position
+            current_bullet.chambered = true
+            current_bullet.chamber = bullet.chamber
+            bullet.chamber.current_bullet = current_bullet
+        else:
+            current_bullet.switch_view(true)
+            current_bullet.return_position = bullet.return_position
+            current_bullet.reparent(bullet_manager)
+    else:
+        if bullet.chambered:
+            bullet.chamber.current_bullet = null
+    bullet.reparent(self)
+    bullet.return_position = self.global_position
+    bullet.chambered = true
+    bullet.chamber = self
+    bullet.switch_view(false)
+    current_bullet = bullet
+    new_bullet_inserted.emit(self, bullet.data)

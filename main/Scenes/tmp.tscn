@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1u2aayf85c5c"]
+[gd_scene load_steps=5 format=3 uid="uid://c1u2aayf85c5c"]
 
 [ext_resource type="PackedScene" uid="uid://b1g1pjlvoxks4" path="res://Scenes/player.tscn" id="1_4dk5s"]
 [ext_resource type="Script" uid="uid://cc7w7ardd7vfi" path="res://Scripts/tmp.gd" id="1_vt2gi"]
 [ext_resource type="PackedScene" uid="uid://baaui1378vxx6" path="res://Scenes/enemy.tscn" id="2_vt2gi"]
+[ext_resource type="PackedScene" uid="uid://8yxh4i3gbno6" path="res://Scenes/update_chamber_overlay.tscn" id="4_co08v"]
 
 [node name="tmp" type="Node2D"]
 script = ExtResource("1_vt2gi")
@@ -10,3 +11,6 @@ enemy_scene = ExtResource("2_vt2gi")
 
 [node name="Player" parent="." instance=ExtResource("1_4dk5s")]
 position = Vector2(945, 525)
+
+[node name="UpdateChamberOverlay" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_co08v")]
+player = NodePath("../Player")
