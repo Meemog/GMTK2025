@@ -17,4 +17,4 @@ shape = SubResource("RectangleShape2D_xjght")
 scale = Vector2(3.2, 3.2)
 texture = ExtResource("1_xjght")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

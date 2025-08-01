@@ -68,11 +68,12 @@ func _process(delta: float) -> void:
         
         # fire
         var bullet_vector = Vector2.ONE.rotated(gun_rotation - PI/4)
-        var bullet = bullet_scene.instantiate()
+        var bullet : BulletProjectile = bullet_scene.instantiate()
         bullet.position = $GunSprite/Marker2D.global_position
         bullet.rotation = gun_rotation
         bullet.speed = bullet_speed
         bullet.travel_vector = bullet_vector
+        bullet.data = bullets[bullet_pointer]
         add_sibling(bullet)
         $Shot.play()
         time_since_shot = 0
