@@ -16,9 +16,10 @@ func _process(delta: float) -> void:
     position += linear_velocity
     
 func take_damage(damage : float) -> void:
-    hitpoints -= damage
-    if hitpoints <= 0:
-        die()
+    if damage > 0:
+        hitpoints -= damage
+        if hitpoints <= 0:
+            die()
 
 func process_knockback(knockback : float, direction: Vector2) -> void:
     linear_velocity += knockback * direction
