@@ -12,6 +12,8 @@ extends Area2D
 signal fired()
 signal reload()
 
+enum State {MENU, PAUSED, CHAMBERING, LIVE, NULL}
+
 var bullet_pointer : int = 0
 var mouse_location
 var gun_rotation
@@ -21,6 +23,7 @@ var is_reloading = false
 var time_since_shot = firing_cooldown
 var time_since_dash = dash_cooldown
 var time_since_reload = reload_time
+var active = true
 
 # Player stats
 var health : int = 3
@@ -30,6 +33,8 @@ func _ready() -> void:
     print(bullets[0].back_view_texture)
 
 func _process(delta: float) -> void:
+    if not active:
+        return
 
     # Movement
     
@@ -133,3 +138,14 @@ func take_damage(damage : int) -> void:
     
 func die() -> void:
     print("You are dead!!!")
+
+func _on_state_change(state):
+    print("Changed State")
+    if state == State.LIVE:
+        active = true
+        $BodySprite.play("Idle")
+    else:
+        active = false
+        $BodySprite.stop()
+        
+    
