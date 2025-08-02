@@ -29,6 +29,7 @@ func _on_main_menu_play_btn_clicked() -> void:
     
     # Do logic for setting up game
     player = player_scene.instantiate()
+    change_state.connect(player._on_state_change)
     add_child(player)
     
     update_chamber_overlay.player = player
@@ -62,8 +63,10 @@ func _input(event: InputEvent) -> void:
 func _on_round_ended() -> void:
     print("Round Ended!!!")
     update_chamber_overlay.open_overlay()
+    set_state(State.CHAMBERING)
 
 func _on_chamber_update_completed() -> void:
     current_round += 1
     Events.new_round_started.emit(current_round)
     player.start_reload()
+    set_state(State.LIVE)
