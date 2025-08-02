@@ -36,5 +36,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
     
     if area.collision_layer == 8:
         # Collision with player
-        var player : Player = area
+        var player : Player = area.get_parent()
         deal_damage(player)

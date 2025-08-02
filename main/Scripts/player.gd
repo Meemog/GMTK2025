@@ -1,5 +1,5 @@
 class_name Player
-extends Area2D
+extends RigidBody2D
 
 class TempBullet:
     var damage : float
@@ -46,29 +46,29 @@ func _process(delta: float) -> void:
 
     # Movement
     
-    var velocity = Vector2.ZERO
+    var inp_velocity = Vector2.ZERO
     
     if Input.is_action_pressed("up"):
-        velocity.y -= 1
+        inp_velocity.y -= 1
     if Input.is_action_pressed("down"):
-        velocity.y += 1
+        inp_velocity.y += 1
     if Input.is_action_pressed("right"):
-        velocity.x += 1
+        inp_velocity.x += 1
     if Input.is_action_pressed("left"):
-        velocity.x -= 1
+        inp_velocity.x -= 1
     
-    if velocity.length() > 0:
-        velocity = velocity.normalized() * speed
+    if inp_velocity.length() > 0:
+        inp_velocity = inp_velocity.normalized() * speed
         $BodySprite.animation = "walk"
-        $BodySprite.scale.x = abs($BodySprite.scale.x) * -1 if velocity.x < 0 else abs($BodySprite.scale.x)
-        if velocity.x > 0:
+        $BodySprite.scale.x = abs($BodySprite.scale.x) * -1 if inp_velocity.x < 0 else abs($BodySprite.scale.x)
+        if inp_velocity.x > 0:
             $BodySprite.scale.x = abs($BodySprite.scale.x)
-        elif velocity.x < 0:
+        elif inp_velocity.x < 0:
             $BodySprite.scale.x = abs($BodySprite.scale.x) * -1
     else:
         $BodySprite.animation = "idle"
     
-    position += velocity * delta
+    position += inp_velocity * delta + linear_velocity
     
     # Gun
     mouse_location = get_global_mouse_position()
@@ -80,6 +80,7 @@ func _process(delta: float) -> void:
         shoot()
 
     # Dash
+    """
     if Input.is_action_just_pressed("dash") and can_dash:
         if velocity != Vector2.ZERO:
             position += (velocity/speed) * dash_distance
@@ -96,6 +97,7 @@ func _process(delta: float) -> void:
         if time_since_dash > dash_cooldown:
             $Recharge.play()
             can_dash = true
+    """
     
     time_since_shot += delta
     if not can_fire:
@@ -113,6 +115,10 @@ func start_reload():
     bullet_pointer = 0
     time_since_reload = 0
     is_reloading = true
+
+func knockback(magnitude: float):
+    var dir = Vector2.ONE.rotated(gun_rotation + (3 * PI)/4)
+    linear_velocity += dir * magnitude
 
 func shoot() -> void:
     # get bullet information
