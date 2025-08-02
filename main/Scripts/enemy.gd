@@ -1,6 +1,8 @@
 class_name Enemy
 extends RigidBody2D
 
+@onready var hit_flash_animation_player: AnimationPlayer = $HitFlashAnimationPlayer
+
 var player: Node
 var speed
 var hitpoints = 30
@@ -24,7 +26,10 @@ func take_damage(damage : float) -> void:
         $ProgressBar.show()
         hitpoints -= damage
         $ProgressBar.value = hitpoints
+        hit_flash_animation_player.play("hit_flash")
         if hitpoints <= 0:
+            await get_tree().create_timer(0.2).timeout
+            Events.screen_shake_requested.emit(5, 0.2)
             die()
 
 func process_knockback(knockback : float, direction: Vector2) -> void:
