@@ -3,6 +3,8 @@ extends Area2D
 
 var damage = 10
 var knockback = 15
+var range : float = 0.5
+var flying_effect_cooldown : float = 0.3
 var travel_vector
 var speed: int
 var piercing : bool = false
@@ -11,9 +13,21 @@ var has_hit: Array[Enemy] = []
 
 var status_effect_node_scene : PackedScene = preload("res://Scenes/status_effect_node.tscn")
 
+var flying_effect_counter : float = 0.0
+var range_counter : float = 0.0
 var data : Bullet 
 
 func _process(delta: float) -> void:
+    flying_effect_counter += delta
+    range_counter += delta
+    
+    if range_counter >= range:
+        queue_free()
+    
+    if flying_effect_counter >= flying_effect_cooldown:
+        flying_effect_counter = 0.0
+        data.flying()
+
     position += travel_vector * speed * delta
 
 func shoot(player : Player) -> void:

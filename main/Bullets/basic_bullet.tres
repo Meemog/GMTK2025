@@ -10,6 +10,7 @@ name = "Basic Bullet"
 damage = 10.0
 knockback = 10.0
 speed = 1000.0
+range = 0.5
 piercing = false
 description = "Simple and Effective
 "

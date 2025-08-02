@@ -8,7 +8,9 @@ enum EFFECT_TYPE {ICE, FIRE, BLEED}
 @export var damage : float
 @export var knockback : float
 @export var speed : float
+@export var range : float
 @export var piercing : bool = false
+@export var recoil : float = 0.0
 @export_multiline var description : String
 
 @export_group("Bullet Visuals")

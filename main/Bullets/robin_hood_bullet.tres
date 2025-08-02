@@ -10,6 +10,7 @@ name = "Robin Hood Bullet"
 damage = 8.0
 knockback = 5.0
 speed = 1000.0
+range = 0.5
 piercing = true
 description = "Your next three bullets have piercing but do 40% less damage."
 side_view_texture = ExtResource("3_jy03w")
