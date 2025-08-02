@@ -17,6 +17,6 @@ description = "Slows Enemies"
 side_view_texture = ExtResource("3_e6muv")
 back_view_texture = ExtResource("1_1dmss")
 has_effect = true
-effect_duration = 1.0
+effect_duration = 1.8
 time_between_flying_effect = 1.0
 metadata/_custom_type_script = "uid://cnexkc647mh6q"

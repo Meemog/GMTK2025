@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8yxh4i3gbno6"]
+[gd_scene load_steps=17 format=3 uid="uid://8yxh4i3gbno6"]
 
 [ext_resource type="Script" uid="uid://crn4luwyay0cq" path="res://Scripts/BulletUI/update_chamber_overlay.gd" id="1_3et70"]
 [ext_resource type="Texture2D" uid="uid://h43o6qoaixia" path="res://Assets/bullets.png" id="1_m51wb"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dedwbdf53dwbe" path="res://Scenes/BulletUI/bullet_tool_tip.gd" id="8_4a857"]
 [ext_resource type="Resource" uid="uid://b4rcphrmhxve8" path="res://Bullets/fire_bullet.tres" id="8_i7sj7"]
 [ext_resource type="Resource" uid="uid://db71nbvwxqu1d" path="res://Bullets/blank_bullet.tres" id="9_8snva"]
+[ext_resource type="Resource" uid="uid://07im6jk4rt80" path="res://Bullets/bludgeoning_bullet.tres" id="10_7lsod"]
 [ext_resource type="Script" uid="uid://b54mds0jphdth" path="res://Scenes/BulletUI/chamber_overlay_confirm_button.gd" id="10_x8hjv"]
 
 [node name="UpdateChamberOverlay" type="Control"]
@@ -36,7 +37,7 @@ color = Color(0, 0, 0, 0.388235)
 
 [node name="BulletShop" type="Node2D" parent="." groups=["BULLET_UI_MANAGER"]]
 script = ExtResource("1_xriw6")
-bullet_types = Array[ExtResource("2_51cbe")]([ExtResource("3_rsory"), ExtResource("5_uw73f"), ExtResource("6_wtke8"), ExtResource("7_eiyvq"), ExtResource("8_i7sj7"), ExtResource("9_8snva")])
+bullet_types = Array[ExtResource("2_51cbe")]([ExtResource("3_rsory"), ExtResource("5_uw73f"), ExtResource("6_wtke8"), ExtResource("7_eiyvq"), ExtResource("8_i7sj7"), ExtResource("9_8snva"), ExtResource("10_7lsod")])
 
 [node name="Revolver" type="Node2D" parent="."]
 position = Vector2(950, 620)

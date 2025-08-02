@@ -55,5 +55,5 @@ func _on_camera_recoil_requested(intensity: float, direction : Vector2, impluse_
     await tween.finished
     
     tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-    tween.tween_property(self, "position", start_position, recover_time)
+    tween.tween_property(self, "position", Vector2.ZERO, recover_time)
     

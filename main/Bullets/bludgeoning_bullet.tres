@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://07im6jk4rt80"]
+
+[ext_resource type="Texture2D" uid="uid://xait62kv25xe" path="res://Assets/bludgeoning_shell_back.png" id="1_pu031"]
+[ext_resource type="Script" uid="uid://8ie8pcv7chpu" path="res://Bullets/bludgeoning_bullet.gd" id="2_dixsr"]
+[ext_resource type="Texture2D" uid="uid://bet0pivirfta8" path="res://Assets/bludgeoning_shell_side_view.png" id="3_gci0h"]
+
+[resource]
+script = ExtResource("2_dixsr")
+name = "Bludgeoning Bullet"
+damage = 5.0
+knockback = 20.0
+speed = 700.0
+range = 0.5
+piercing = false
+recoil = 0.0
+description = "Big Knockback! Shatters icy enemies!"
+side_view_texture = ExtResource("3_gci0h")
+back_view_texture = ExtResource("1_pu031")
+has_effect = false
+effect_duration = 2.0
+time_between_flying_effect = 1.0
+metadata/_custom_type_script = "uid://cnexkc647mh6q"

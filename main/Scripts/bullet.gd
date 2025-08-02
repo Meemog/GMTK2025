@@ -15,11 +15,14 @@ var status_effect_node_scene : PackedScene = preload("res://Scenes/status_effect
 
 var flying_effect_counter : float = 0.0
 var range_counter : float = 0.0
-var data : Bullet 
+var data : Bullet
+var camera_recoil_cooldown : float = 0.1
+var camera_recoil_thredhold : float = 0.1
 
 func _process(delta: float) -> void:
     flying_effect_counter += delta
     range_counter += delta
+    camera_recoil_cooldown += delta
     
     if range_counter >= range:
         queue_free()
@@ -32,7 +35,6 @@ func _process(delta: float) -> void:
 
 func shoot(player : Player) -> void:
     print("Trying to recoil!")
-    Events.camera_recoil_requested.emit(5, travel_vector.normalized(), 0.08, 0.1)
     data.shoot(player)
 
 func flying() -> void:
@@ -40,10 +42,12 @@ func flying() -> void:
 
 func hit(target : Enemy) -> void:
     if target not in has_hit:
-        Events.screen_shake_requested.emit(8.0, 0.2)
         target.take_damage(damage)
         target.process_knockback(knockback, travel_vector)
         has_hit.append(target)
+        if camera_recoil_cooldown >= camera_recoil_thredhold:
+            Events.camera_recoil_requested.emit(5, travel_vector.normalized(), 0.08, 0.1)
+            camera_recoil_cooldown = 0
         apply_additional_status_effects(target)
         data.hit(target)
         if not piercing:
