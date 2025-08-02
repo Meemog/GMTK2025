@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cnexkc647mh6q" path="res://Data/bullet.gd" id="3_tx1dd"]
 [ext_resource type="Resource" uid="uid://d31b3s2ga4wl0" path="res://Bullets/basic_bullet.tres" id="4_gymyn"]
 [ext_resource type="Texture2D" uid="uid://b7ytds7mwl6nb" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="4_pu2lt"]
-[ext_resource type="Resource" uid="uid://bnjfnoodk0w2b" path="res://Bullets/robin_hood_bullet.tres" id="4_ukyrk"]
+[ext_resource type="Resource" uid="uid://b4rcphrmhxve8" path="res://Bullets/fire_bullet.tres" id="4_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://tgpr881hjyqd" path="res://Assets/gun.png" id="5_ukyrk"]
 [ext_resource type="AudioStream" uid="uid://dxd44vgwrh235" path="res://Assets/explosion.wav" id="6_7dp3o"]
 [ext_resource type="AudioStream" uid="uid://da4ubi4qkyqic" path="res://Assets/cock.mp3" id="7_h4iuc"]

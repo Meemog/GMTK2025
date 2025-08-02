@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b4rcphrmhxve8"]
+
+[ext_resource type="Texture2D" uid="uid://brpm5uhe7vtq1" path="res://Assets/danger_bullet_back.png" id="1_owuoq"]
+[ext_resource type="Script" uid="uid://buktpcrsfmqj4" path="res://Bullets/fire_bullet.gd" id="1_r2fn0"]
+[ext_resource type="Texture2D" uid="uid://bwqnna2whg743" path="res://Assets/danger_bullet_side_view.png" id="3_27wx1"]
+
+[resource]
+script = ExtResource("1_r2fn0")
+name = "Fire Bullet"
+damage = 3.0
+knockback = 10.0
+speed = 1000.0
+range = 0.5
+piercing = false
+recoil = 0.0
+description = "Burns Enemies"
+side_view_texture = ExtResource("3_27wx1")
+back_view_texture = ExtResource("1_owuoq")
+has_effect = true
+effect_duration = 5.0
+time_between_flying_effect = 1.0
+metadata/_custom_type_script = "uid://cnexkc647mh6q"

@@ -15,6 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     tick_rate_counter += delta
     if tick_rate_counter >= data.tick_rate:
+        print("Tick rate ended!!")
         tick_rate_counter = 0
         effect_over_time(target)
     
