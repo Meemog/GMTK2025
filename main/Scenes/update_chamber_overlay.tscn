@@ -68,6 +68,7 @@ position = Vector2(-127, -73)
 unique_name_in_owner = true
 z_index = 99
 position = Vector2(199, 523)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("8_4a857")
 metadata/_edit_group_ = true
 
