@@ -5,6 +5,7 @@ var player: Node
 var speed
 var hitpoints = 30
 var damage : int = 1
+var vector_to_player: Vector2 = Vector2.ONE
 
 func _ready() -> void:
     $Sprite.play()
@@ -13,7 +14,7 @@ func _ready() -> void:
     $ProgressBar.value = hitpoints
 
 func _process(delta: float) -> void:
-    var vector_to_player = (player.position - position).normalized()
+    vector_to_player = (player.position - position).normalized()
 
     position += vector_to_player * speed * delta
     position += linear_velocity
@@ -43,4 +44,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
     if area.collision_layer == 8:
         # Collision with player
         var player : Player = area.get_parent()
-        deal_damage(player)
+        if player.linear_velocity.length() < 10:
+            deal_damage(player)
+        else:
+            take_damage(player.collision_damage)
+            process_knockback(80, vector_to_player.rotated(PI))
