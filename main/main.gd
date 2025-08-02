@@ -8,6 +8,7 @@ enum State {MENU, PAUSED, CHAMBERING, LIVE, NULL}
 @export var enemy_scene: PackedScene
 @export var spawn_manager_scene: PackedScene
 @export var ammo_counter_scene: PackedScene
+@export var health_bar_scene : PackedScene
 @onready var update_chamber_overlay: UpdateChamberOverlay = $UiManager/UpdateChamberOverlay
 @export var enemy_speed = 8
 
@@ -38,6 +39,9 @@ func _on_main_menu_play_btn_clicked() -> void:
     ammo_counter.player = player
     $UiManager.add_child(ammo_counter)
     $UiManager.move_child(ammo_counter, 0)
+    
+    var health_bar = health_bar_scene.instantiate()
+    $UiManager.add_child(health_bar)
     
     var spawn_manager = spawn_manager_scene.instantiate()
     spawn_manager.player = player
