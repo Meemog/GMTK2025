@@ -185,7 +185,7 @@ func shoot() -> void:
     bullet.data = bullets[bullet_pointer]
     add_sibling(bullet)
         
-    bullet.data.shoot(self)
+    bullet.shoot(self)
     $Shot.play()
     time_since_shot = 0
     can_fire = false

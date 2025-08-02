@@ -31,6 +31,8 @@ func _process(delta: float) -> void:
     position += travel_vector * speed * delta
 
 func shoot(player : Player) -> void:
+    print("Trying to recoil!")
+    Events.camera_recoil_requested.emit(5, travel_vector.normalized(), 0.08, 0.1)
     data.shoot(player)
 
 func flying() -> void:
