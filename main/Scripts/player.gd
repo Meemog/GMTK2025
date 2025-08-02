@@ -6,7 +6,12 @@ class TempBullet:
     var speed : float
     var knockback : float
     var piercing : bool
+    var range : float
+    var recoil : float
     var additional_status_effect : Array[StatusEffect] = []
+    
+    func _to_string() -> String:
+        return "{Damage: %s, Speed: %s, Knockback: %s, Piercing: %s, Range: %s, Recoil: %s, Status Effects: %s}" % [damage, speed, knockback, piercing, range, recoil, additional_status_effect]
 
 @export var speed = 400
 @export var dash_cooldown = 4
@@ -128,10 +133,11 @@ func shoot() -> void:
     new_temp_bullet.knockback = current_bullet.knockback
     new_temp_bullet.damage = current_bullet.damage
     new_temp_bullet.piercing = current_bullet.piercing
+    new_temp_bullet.range = current_bullet.range
     
     # apply temp bonuses
     new_temp_bullet = apply_temp_bonuses(bullet_temp_bonuses[bullet_pointer], new_temp_bullet)
-    print(new_temp_bullet.damage)
+    print(new_temp_bullet._to_string())
     
     # instantiate and fire
     var bullet_vector = Vector2.ONE.rotated(gun_rotation - PI/4)
@@ -143,6 +149,7 @@ func shoot() -> void:
     # apply information to bullet projectile
     bullet.speed = new_temp_bullet.speed
     bullet.damage = new_temp_bullet.damage
+    bullet.range = new_temp_bullet.range
     bullet.knockback = new_temp_bullet.knockback
     bullet.piercing = new_temp_bullet.piercing
     bullet.data = bullets[bullet_pointer]
@@ -176,6 +183,8 @@ func apply_temp_bonuses(bonuses : Dictionary, temp_bullet : TempBullet) -> TempB
                 temp_bullet.piercing = bonueses_values[i]
             "knockback":
                 temp_bullet.knockback *= bonueses_values[i]
+            "range":
+                temp_bullet.range *= bonueses_values[i]
             "status_effect":
                 temp_bullet.additional_status_effect.append(bonueses_values[i])
             _:

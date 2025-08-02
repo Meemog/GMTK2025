@@ -10,6 +10,7 @@ extends Node2D
 @onready var damage_progress_bar: ProgressBar = $PanelContainer/MarginContainer/VBoxContainer/Damage/DamageProgressBar
 @onready var speed_progress_bar: ProgressBar = $PanelContainer/MarginContainer/VBoxContainer/Damage3/SpeedProgressBar
 @onready var knock_back_progress_bar: ProgressBar = $PanelContainer/MarginContainer/VBoxContainer/Damage4/KnockBackProgressBar
+@onready var range_progress_bar: ProgressBar = $PanelContainer/MarginContainer/VBoxContainer/Damage5/RangeProgressBar
 
 @export var fade_seconds : float = 0.2
 
@@ -38,6 +39,7 @@ func _on_tooltip_requested(bullet : Bullet) -> void:
     damage_progress_bar.value = bullet.damage
     speed_progress_bar.value = bullet.speed
     knock_back_progress_bar.value = bullet.knockback
+    range_progress_bar.value = bullet.range
     
     #global_position = get_global_mouse_position()
     tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)

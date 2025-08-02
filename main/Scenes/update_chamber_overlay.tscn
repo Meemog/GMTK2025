@@ -179,13 +179,13 @@ alignment = 1
 layout_mode = 2
 text = "Range"
 
-[node name="KnockBackProgressBar" type="ProgressBar" parent="BulletToolTip/PanelContainer/MarginContainer/VBoxContainer/Damage5"]
+[node name="RangeProgressBar" type="ProgressBar" parent="BulletToolTip/PanelContainer/MarginContainer/VBoxContainer/Damage5"]
 custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
 size_flags_horizontal = 10
 mouse_filter = 2
 max_value = 1.0
-value = 1.0
+value = 0.5
 show_percentage = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
