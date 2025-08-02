@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ce8yfchqb6ixj" path="res://Scenes/enemy_spawn_manager.tscn" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dxrlycp27hmfj" path="res://Scenes/ammo_count.tscn" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://8yxh4i3gbno6" path="res://Scenes/update_chamber_overlay.tscn" id="6_272bh"]
-[ext_resource type="TileSet" uid="uid://0ng5owp154j" path="res://Assets/tilemap.tres" id="7_4c57u"]
+[ext_resource type="TileSet" uid="uid://c4b3121hwufuh" path="res://Assets/tilemap.tres" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cufid62j5hh0t" path="res://Scenes/wave_counter.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cl80b3jtcgufm" path="res://Scenes/health_bar.tscn" id="9_kek77"]
 
@@ -27,6 +27,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAQABAAQAAAAAAP//AQABAAQAAAD/////AQABAAQ
 tile_set = ExtResource("7_4c57u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1, 0.992205)
 zoom = Vector2(0.76, 0.76)
 
 [node name="UiManager" type="CanvasLayer" parent="."]

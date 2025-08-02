@@ -13,6 +13,10 @@ class TempBullet:
     func _to_string() -> String:
         return "{Damage: %s, Speed: %s, Knockback: %s, Piercing: %s, Range: %s, Recoil: %s, Status Effects: %s}" % [damage, speed, knockback, piercing, range, recoil, additional_status_effect]
 
+
+@onready var zoom : Vector2 = get_viewport().get_camera_2d().zoom
+@onready var screen_size : Vector2 = get_viewport().size
+
 @export var speed = 400
 @export var dash_cooldown = 4
 @export var reload_time = 2
@@ -44,6 +48,7 @@ var health : int = 3
 func _ready() -> void:
     $BodySprite.play()
     print(bullets[0].back_view_texture)
+    screen_size = screen_size / zoom
 
 func _process(delta: float) -> void:
     if not active:
@@ -74,6 +79,8 @@ func _process(delta: float) -> void:
         $BodySprite.animation = "idle"
     
     position += inp_velocity * delta + linear_velocity
+    position.x = clamp(position.x, -(screen_size.x)/2, screen_size.x/2)
+    position.y = clamp(position.y, -(screen_size.y)/2, screen_size.y/2)
     
     # Gun
     mouse_location = get_global_mouse_position()
