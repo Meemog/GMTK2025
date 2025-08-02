@@ -8,6 +8,9 @@ var damage : int = 1
 
 func _ready() -> void:
     $Sprite.play()
+    $ProgressBar.hide()
+    $ProgressBar.max_value = hitpoints
+    $ProgressBar.value = hitpoints
 
 func _process(delta: float) -> void:
     var vector_to_player = (player.position - position).normalized()
@@ -17,7 +20,9 @@ func _process(delta: float) -> void:
     
 func take_damage(damage : float) -> void:
     if damage > 0:
+        $ProgressBar.show()
         hitpoints -= damage
+        $ProgressBar.value = hitpoints
         if hitpoints <= 0:
             die()
 
