@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_nb5c6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(47.9248, 26.9963)

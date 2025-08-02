@@ -44,7 +44,7 @@ var time_since_shot = firing_cooldown
 var time_since_dash = dash_cooldown
 var time_since_reload = reload_time
 var active = true
-var bullet_temp_bonuses : Array[Dictionary] = [{},{},{},{},{},{}]
+var bullet_temp_bonuses : Array[Array] = [[],[],[],[],[],[]]
 var collision_damage = 22
 
 # Player stats
@@ -167,6 +167,7 @@ func shoot() -> void:
     # apply temp bonuses
     new_temp_bullet = apply_temp_bonuses(bullet_temp_bonuses[bullet_pointer], new_temp_bullet)
     print(new_temp_bullet._to_string())
+    bullet_temp_bonuses[bullet_pointer] = []
     
     # instantiate and fire
     var bullet_vector = Vector2.ONE.rotated(gun_rotation - PI/4)
@@ -195,30 +196,30 @@ func shoot() -> void:
     if bullet_pointer >= 6:
         start_reload()
 
-func apply_temp_bonuses(bonuses : Dictionary, temp_bullet : TempBullet) -> TempBullet:
+func apply_temp_bonuses(bonuses, temp_bullet : TempBullet) -> TempBullet:
     if len(bonuses) == 0:
         return temp_bullet
     
-    var bonueses_keys = bonuses.keys()
-    var bonueses_values = bonuses.values()
-    
     for i in range(len(bonuses)):
-        match bonueses_keys[i]:
-            "speed":
-                temp_bullet.speed *= bonueses_values[i]
-            "damage":
-                temp_bullet.damage *= bonueses_values[i]
-            "piercing":
-                temp_bullet.piercing = bonueses_values[i]
-            "knockback":
-                temp_bullet.knockback *= bonueses_values[i]
-            "range":
-                temp_bullet.range *= bonueses_values[i]
-            "status_effect":
-                temp_bullet.additional_status_effect.append(bonueses_values[i])
-            _:
-                pass
-    bonuses = {}
+        print(bonuses[i])
+        var bonueses_keys = bonuses[i].keys()
+        var bonueses_values = bonuses[i].values()
+        for j in range(len(bonueses_keys)):
+            match bonueses_keys[j]:
+                "speed":
+                    temp_bullet.speed *= bonueses_values[j]
+                "damage":
+                    temp_bullet.damage *= bonueses_values[j]
+                "piercing":
+                    temp_bullet.piercing = bonueses_values[j]
+                "knockback":
+                    temp_bullet.knockback *= bonueses_values[j]
+                "range":
+                    temp_bullet.range *= bonueses_values[j]
+                "status_effect":
+                    temp_bullet.additional_status_effect.append(bonueses_values[j])
+                _:
+                    pass
     
     return temp_bullet
     

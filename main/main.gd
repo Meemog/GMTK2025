@@ -76,7 +76,6 @@ func restart_game() -> void:
     spawn_manager.reset()
     
     player.reset()
-    
     ammo_counter._on_reload()
     
     health_bar.queue_free()
