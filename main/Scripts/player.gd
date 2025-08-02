@@ -125,7 +125,7 @@ func shoot() -> void:
     
     # apply temp bonuses
     new_temp_bullet = apply_temp_bonuses(bullet_temp_bonuses[bullet_pointer], new_temp_bullet)
-    print(new_temp_bullet.piercing)
+    print(new_temp_bullet.damage)
     
     # instantiate and fire
     var bullet_vector = Vector2.ONE.rotated(gun_rotation - PI/4)
