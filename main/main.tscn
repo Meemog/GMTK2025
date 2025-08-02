@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cvec1d7cq015b"]
+[gd_scene load_steps=13 format=4 uid="uid://cvec1d7cq015b"]
 
 [ext_resource type="Script" uid="uid://ctmpka1t8gdma" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ciwp82oi167xb" path="res://Scenes/main_menu.tscn" id="2_0xm2m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://8yxh4i3gbno6" path="res://Scenes/update_chamber_overlay.tscn" id="6_272bh"]
 [ext_resource type="TileSet" uid="uid://c4b3121hwufuh" path="res://Assets/tilemap.tres" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cufid62j5hh0t" path="res://Scenes/wave_counter.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://c8bduqaf6gung" path="res://Scripts/camera_2d.gd" id="8_dg77c"]
 [ext_resource type="PackedScene" uid="uid://cl80b3jtcgufm" path="res://Scenes/health_bar.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://beic46f526tao" path="res://Scenes/death_overlay.tscn" id="11_efxa6"]
 
@@ -30,6 +31,7 @@ tile_set = ExtResource("7_4c57u")
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1, 0.992205)
 zoom = Vector2(0.76, 0.76)
+script = ExtResource("8_dg77c")
 
 [node name="UiManager" type="CanvasLayer" parent="."]
 

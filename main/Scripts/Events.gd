@@ -13,3 +13,4 @@ signal player_health_updated(player_health : int)
 
 signal player_killed()
 signal game_restart_requested()
+signal screen_shake_requested(intensity : float, time : float)

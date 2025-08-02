@@ -38,6 +38,7 @@ func flying() -> void:
 
 func hit(target : Enemy) -> void:
     if target not in has_hit:
+        Events.screen_shake_requested.emit(8.0, 0.2)
         target.take_damage(damage)
         target.process_knockback(knockback, travel_vector)
         has_hit.append(target)
