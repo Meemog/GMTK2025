@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://baaui1378vxx6"]
+[gd_scene load_steps=12 format=3 uid="uid://baaui1378vxx6"]
 
 [ext_resource type="Script" uid="uid://dfggym03h6bh8" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://b7ytds7mwl6nb" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="1_hghv2"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1f0kj"]
+polygon = PackedVector2Array(-46, 100, -31, 112, 0, 115, 29, 112, 48, 98, 30, 81, -2, 77, -29, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
 atlas = ExtResource("1_hghv2")
@@ -54,6 +57,10 @@ gravity_scale = 0.0
 contact_monitor = true
 linear_damp = 10.0
 script = ExtResource("1_1f0kj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_1f0kj")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(7, 7)
