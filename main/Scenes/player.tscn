@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b1g1pjlvoxks4"]
+[gd_scene load_steps=22 format=3 uid="uid://b1g1pjlvoxks4"]
 
 [ext_resource type="Script" uid="uid://djbh478p5uo2r" path="res://Scripts/player.gd" id="1_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://br3fu8n5ergvx" path="res://Scenes/bullet.tscn" id="2_tx1dd"]
@@ -36,7 +36,7 @@ region = Rect2(224, 192, 16, 32)
 atlas = ExtResource("4_pu2lt")
 region = Rect2(240, 192, 16, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gymyn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -73,11 +73,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
-radius = 38.0
-height = 118.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukyrk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -88,8 +84,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Area2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pu2lt"]
+radius = 38.0
+height = 118.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gymyn"]
+radius = 38.0
+height = 118.0
+
+[node name="Player" type="RigidBody2D"]
 collision_layer = 8
+gravity_scale = 0.0
+linear_damp = 10.0
 script = ExtResource("1_f1ek2")
 firing_cooldown = 0.4
 bullet_scene = ExtResource("2_tx1dd")
@@ -97,17 +103,13 @@ bullets = Array[ExtResource("3_tx1dd")]([ExtResource("4_ukyrk"), ExtResource("4_
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(7, 7)
-sprite_frames = SubResource("SpriteFrames_dw050")
+sprite_frames = SubResource("SpriteFrames_gymyn")
 animation = &"walk"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 51)
-shape = SubResource("CapsuleShape2D_b26j0")
 
 [node name="GunSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 37)
 scale = Vector2(3.2, 3.2)
-sprite_frames = SubResource("SpriteFrames_hqtel")
+sprite_frames = SubResource("SpriteFrames_ukyrk")
 offset = Vector2(33.245, 6.895)
 
 [node name="Marker2D" type="Marker2D" parent="GunSprite"]
@@ -128,3 +130,14 @@ volume_db = 4.686
 [node name="Recharge" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_qqcod")
 volume_db = -8.432
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 51)
+shape = SubResource("CapsuleShape2D_pu2lt")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 51)
+shape = SubResource("CapsuleShape2D_gymyn")
