@@ -12,6 +12,7 @@ knockback = 10.0
 speed = 1000.0
 range = 0.5
 piercing = false
+recoil = 0.0
 description = "Simple and Effective
 "
 side_view_texture = ExtResource("3_2mpsp")
