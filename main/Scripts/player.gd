@@ -19,6 +19,8 @@ class TempBullet:
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var body_sprite: AnimatedSprite2D = $BodySprite
 @onready var gun_sprite: AnimatedSprite2D = $GunSprite
+@onready var hit_flash_animation_player: AnimationPlayer = $HitFlashAnimationPlayer
+@onready var on_hit_particle_scene : PackedScene = preload("res://Scenes/player_on_hit_particle_effect.tscn")
 
 @export var speed = 400
 @export var dash_cooldown = 4
@@ -46,6 +48,8 @@ var time_since_reload = reload_time
 var active = true
 var bullet_temp_bonuses : Array[Array] = [[],[],[],[],[],[]]
 var collision_damage = 22
+var invincibility_time = 1.0
+var current_invincibility_time = 0.0
 
 # Player stats
 var health : int = 3
@@ -58,6 +62,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     if not active:
         return
+
+    if current_invincibility_time > 0:
+        current_invincibility_time -= delta
 
     # Movement
     
@@ -222,20 +229,31 @@ func apply_temp_bonuses(bonuses, temp_bullet : TempBullet) -> TempBullet:
                     pass
     
     return temp_bullet
-    
+
+func knockback_all_enemies_effect() -> void:
+    var particle_effect : CPUParticles2D = on_hit_particle_scene.instantiate()
+    particle_effect.one_shot = true
+    add_child(particle_effect)
+    await get_tree().create_timer(3.0).timeout
+    particle_effect.queue_free()
 
 func take_damage(damage : int) -> void:
-    health -= damage
-    Events.player_health_updated.emit(health)
-    if health <= 0:
-        die()
+    if current_invincibility_time <= 0:
+        health -= damage
+        Events.player_health_updated.emit(health)
+        hit_flash_animation_player.play("hit_flash")
+        knockback_all_enemies_effect()
+        current_invincibility_time = invincibility_time
+        if health <= 0:
+            die()
     
 func die() -> void:
+    Events.player_killed.emit()
+    await get_tree().create_timer(0.2).timeout
     collision_shape_2d.disabled = true
     $CollisionShape2D.disabled = true
     gun_sprite.hide()
     body_sprite.hide()
-    Events.player_killed.emit()
     print("You are dead!!!")
 
 func _on_state_change(state):

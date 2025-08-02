@@ -19,6 +19,7 @@ var enemy_speed : int = 200
 func _ready() -> void:
     Events.new_round_started.connect(summon_wave)
     Events.enemy_died.connect(_on_enemy_died)
+    Events.player_health_updated.connect(_on_player_health_updated)
 
 func reset() -> void:
     remove_all_enemies()
@@ -58,4 +59,11 @@ func _on_enemy_died() -> void:
     enemies_remaining -= 1
     if enemies_remaining <= 0:
         Events.round_ended.emit()
+        
+func _on_player_health_updated(player_health : int) -> void:
+    for child in get_children():
+        if child is Enemy:
+            var knockback_direction = (player.global_position - child.global_position)
+            print("Trying to knockback!!!")
+            child.process_knockback(-30.0, knockback_direction.normalized())
     
