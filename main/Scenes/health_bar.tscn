@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl80b3jtcgufm"]
+
+[ext_resource type="Script" uid="uid://dhhg32noqwvj8" path="res://Scripts/health_bar.gd" id="1_78m4n"]
+[ext_resource type="Texture2D" uid="uid://np55sooul4oc" path="res://Assets/ui_heart_full.png" id="2_m34ix"]
+
+[node name="health_bar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_78m4n")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HeartContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HeartContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("2_m34ix")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HeartContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("2_m34ix")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HeartContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("2_m34ix")

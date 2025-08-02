@@ -23,7 +23,7 @@ var time_since_dash = dash_cooldown
 var time_since_reload = reload_time
 
 # Player stats
-var health : float = 3.0
+var health : int = 3
 
 func _ready() -> void:
     $BodySprite.play()
@@ -125,8 +125,9 @@ func start_reload():
     time_since_reload = 0
     is_reloading = true
 
-func take_damage(damage : float) -> void:
+func take_damage(damage : int) -> void:
     health -= damage
+    Events.player_health_updated.emit(health)
     if health <= 0:
         die()
     

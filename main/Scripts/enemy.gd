@@ -4,7 +4,7 @@ extends RigidBody2D
 var player: Node
 var speed
 var hitpoints = 30
-var damage : float = 1.0
+var damage : int = 1
 
 func _ready() -> void:
     $Sprite.play()
