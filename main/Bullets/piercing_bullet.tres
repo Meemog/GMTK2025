@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_hwwh8")
 name = "Piercing Bullet"
-damage = 10.0
+damage = 20.0
 knockback = 10.0
 speed = 1200.0
 range = 0.7

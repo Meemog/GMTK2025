@@ -45,6 +45,7 @@ var time_since_dash = dash_cooldown
 var time_since_reload = reload_time
 var active = true
 var bullet_temp_bonuses : Array[Dictionary] = [{},{},{},{},{},{}]
+var collision_damage = 22
 
 # Player stats
 var health : int = 3
