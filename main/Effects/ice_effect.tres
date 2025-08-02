@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="IceEffect" load_steps=2 format=3 uid="uid://caieqqc50itnt"]
+[gd_resource type="Resource" script_class="IceEffect" load_steps=2 format=3 uid="uid://bm0ci5hmagwfq"]
 
 [ext_resource type="Script" uid="uid://bt0x0ijnogrps" path="res://Effects/ice_effect.gd" id="1_rhp81"]
 
