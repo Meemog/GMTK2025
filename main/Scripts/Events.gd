@@ -10,3 +10,6 @@ signal round_ended()
 
 signal enemy_died()
 signal player_health_updated(player_health : int)
+
+signal player_killed()
+signal game_restart_requested()

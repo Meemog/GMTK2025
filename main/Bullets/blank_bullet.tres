@@ -8,7 +8,7 @@
 script = ExtResource("1_701f1")
 name = "Blank"
 damage = 0.0
-knockback = 0.0
+knockback = 20.0
 speed = 0.0
 range = 0.0
 piercing = false

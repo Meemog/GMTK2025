@@ -8,17 +8,23 @@ extends Control
 var is_visable : bool = true
 var tween : Tween
 
+var player_alive : bool = true
+
 var fade_seconds : float = 0.2
 
 func _ready() -> void:
     #assert(player)
     Events.chamber_update_completed.connect(_on_chamber_update_completed)
+    Events.player_killed.connect(_on_player_killed)
     open_overlay()
 
 func _process(delta: float) -> void:
     pass
 
 func open_overlay() -> void:
+    if not player_alive:
+        return
+    
     if not get_tree().root.is_node_ready():
         await ready
     
@@ -55,3 +61,6 @@ func _on_chamber_update_completed() -> void:
         player.bullets = revolver.bullets
     
     hide_overlay()
+
+func _on_player_killed() -> void:
+    player_alive = false

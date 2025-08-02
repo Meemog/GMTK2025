@@ -1,3 +1,4 @@
+class_name AmmoCounter
 extends Control
 
 var player: Player

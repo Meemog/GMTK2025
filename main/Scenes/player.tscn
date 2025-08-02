@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://b1g1pjlvoxks4"]
+[gd_scene load_steps=21 format=3 uid="uid://b1g1pjlvoxks4"]
 
 [ext_resource type="Script" uid="uid://djbh478p5uo2r" path="res://Scripts/player.gd" id="1_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://br3fu8n5ergvx" path="res://Scenes/bullet.tscn" id="2_tx1dd"]
 [ext_resource type="Script" uid="uid://cnexkc647mh6q" path="res://Data/bullet.gd" id="3_tx1dd"]
 [ext_resource type="Resource" uid="uid://d31b3s2ga4wl0" path="res://Bullets/basic_bullet.tres" id="4_gymyn"]
 [ext_resource type="Texture2D" uid="uid://b7ytds7mwl6nb" path="res://Assets/0x72_DungeonTilesetII_v1.7.png" id="4_pu2lt"]
-[ext_resource type="Resource" uid="uid://db71nbvwxqu1d" path="res://Bullets/blank_bullet.tres" id="4_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://tgpr881hjyqd" path="res://Assets/gun.png" id="5_ukyrk"]
 [ext_resource type="AudioStream" uid="uid://dxd44vgwrh235" path="res://Assets/explosion.wav" id="6_7dp3o"]
 [ext_resource type="AudioStream" uid="uid://da4ubi4qkyqic" path="res://Assets/cock.mp3" id="7_h4iuc"]
@@ -99,7 +98,7 @@ linear_damp = 10.0
 script = ExtResource("1_f1ek2")
 firing_cooldown = 0.4
 bullet_scene = ExtResource("2_tx1dd")
-bullets = Array[ExtResource("3_tx1dd")]([ExtResource("4_ukyrk"), ExtResource("4_gymyn"), ExtResource("4_gymyn"), ExtResource("4_gymyn"), ExtResource("4_gymyn"), ExtResource("4_gymyn")])
+starting_bullets = Array[ExtResource("3_tx1dd")]([ExtResource("4_gymyn"), ExtResource("4_gymyn"), ExtResource("4_gymyn"), ExtResource("4_gymyn"), ExtResource("4_gymyn"), ExtResource("4_gymyn")])
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(7, 7)

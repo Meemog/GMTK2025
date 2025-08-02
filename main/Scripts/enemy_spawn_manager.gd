@@ -20,6 +20,9 @@ func _ready() -> void:
     Events.new_round_started.connect(summon_wave)
     Events.enemy_died.connect(_on_enemy_died)
 
+func reset() -> void:
+    remove_all_enemies()
+
 func summon_wave(round_num : int) -> void:
     number_of_enemies = round_num + 2
     while number_of_enemies > 0:
@@ -44,6 +47,12 @@ func get_random_point_from_start(start_point : Vector2, distance : float) -> Vec
     new_point.x += cos(random_theta) * distance
     new_point.y += sin(random_theta) * distance
     return new_point
+    
+func remove_all_enemies() -> void:
+    for child in get_children():
+        if child is Enemy:
+            child.queue_free()
+    enemies_remaining = 0
 
 func _on_enemy_died() -> void:
     enemies_remaining -= 1

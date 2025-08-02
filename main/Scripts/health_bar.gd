@@ -1,3 +1,4 @@
+class_name HealthBar
 extends Control
 
 var current_health : int = 3

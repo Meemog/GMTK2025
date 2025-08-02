@@ -16,6 +16,9 @@ class TempBullet:
 
 @onready var zoom : Vector2 = get_viewport().get_camera_2d().zoom
 @onready var screen_size : Vector2 = get_viewport().size
+@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var body_sprite: AnimatedSprite2D = $BodySprite
+@onready var gun_sprite: AnimatedSprite2D = $GunSprite
 
 @export var speed = 400
 @export var dash_cooldown = 4
@@ -23,6 +26,7 @@ class TempBullet:
 @export var firing_cooldown = 0.3
 @export var dash_distance = 400
 @export var bullet_scene: PackedScene
+@export var starting_bullets : Array[Bullet] = []
 @export var bullets : Array[Bullet] = []
 
 signal fired()
@@ -47,8 +51,8 @@ var health : int = 3
 
 func _ready() -> void:
     $BodySprite.play()
-    print(bullets[0].back_view_texture)
     screen_size = screen_size / zoom
+    reset()
 
 func _process(delta: float) -> void:
     if not active:
@@ -122,7 +126,24 @@ func _process(delta: float) -> void:
         if time_since_reload >= reload_time:
             is_reloading = false
             reload.emit()
-        
+
+func reset() -> void:
+    
+    health = 3
+    
+    bullets = []
+    for i in range(len(starting_bullets)):
+        bullets.append(starting_bullets[i].duplicate())
+    
+    global_position = Vector2(0, 0)
+    
+    collision_shape_2d.disabled = false
+    $CollisionShape2D.disabled = false
+    gun_sprite.show()
+    body_sprite.show()
+    
+    active = true
+ 
 func start_reload():
     bullet_pointer = 0
     time_since_reload = 0
@@ -208,6 +229,11 @@ func take_damage(damage : int) -> void:
         die()
     
 func die() -> void:
+    collision_shape_2d.disabled = true
+    $CollisionShape2D.disabled = true
+    gun_sprite.hide()
+    body_sprite.hide()
+    Events.player_killed.emit()
     print("You are dead!!!")
 
 func _on_state_change(state):

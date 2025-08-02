@@ -22,6 +22,7 @@ scale_amount_min = 3.5
 scale_amount_max = 7.0
 
 [node name="fire_effect" type="CPUParticles2D" parent="."]
+emitting = false
 texture = ExtResource("3_03fls")
 lifetime = 2.18
 lifetime_randomness = 0.1
