@@ -142,7 +142,7 @@ func _on_state_change(state):
     print("Changed State")
     if state == State.LIVE:
         active = true
-        $BodySprite.play("Idle")
+        $BodySprite.play()
     else:
         active = false
         $BodySprite.stop()

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://485vay2bk2al" path="res://Scenes/BulletUI/chamber.tscn" id="4_rsory"]
 [ext_resource type="Script" uid="uid://diecs3i7dcky4" path="res://Scripts/BulletUI/revolver.gd" id="4_xriw6"]
 [ext_resource type="Resource" uid="uid://bysinuf6v87fg" path="res://Bullets/ice_bullet.tres" id="5_uw73f"]
-[ext_resource type="Resource" path="res://Bullets/piercing_bullet.tres" id="6_wtke8"]
+[ext_resource type="Resource" uid="uid://du1062wxvnpxw" path="res://Bullets/piercing_bullet.tres" id="6_wtke8"]
 [ext_resource type="Script" uid="uid://dedwbdf53dwbe" path="res://Scenes/BulletUI/bullet_tool_tip.gd" id="8_4a857"]
 [ext_resource type="Script" uid="uid://b54mds0jphdth" path="res://Scenes/BulletUI/chamber_overlay_confirm_button.gd" id="10_x8hjv"]
 
