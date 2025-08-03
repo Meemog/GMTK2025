@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://rslg0u36fbc"]
+
+[ext_resource type="Script" uid="uid://cui18bfcikwke" path="res://Bullets/bounce_bullet.gd" id="1_lo7qh"]
+[ext_resource type="Texture2D" uid="uid://leyavptajjy" path="res://Assets/bounce_bullet_back_view.png" id="1_wnj6c"]
+[ext_resource type="Texture2D" uid="uid://d0uqv336gc5vx" path="res://Assets/bounce_bullet_side_view.png" id="3_sav36"]
+
+[resource]
+script = ExtResource("1_lo7qh")
+name = "Bounce Bullet"
+damage = 22.0
+knockback = 10.0
+speed = 1000.0
+range = 5.0
+piercing = true
+recoil = 0.0
+description = "Bounces!"
+side_view_texture = ExtResource("3_sav36")
+back_view_texture = ExtResource("1_wnj6c")
+has_effect = false
+effect_duration = 2.0
+time_between_flying_effect = 1.0
+metadata/_custom_type_script = "uid://cnexkc647mh6q"

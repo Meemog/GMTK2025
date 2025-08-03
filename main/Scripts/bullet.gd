@@ -12,6 +12,7 @@ var additional_status_effect : Array[StatusEffect] = []
 var has_hit: Array[Enemy] = []
 
 var status_effect_node_scene : PackedScene = preload("res://Scenes/status_effect_node.tscn")
+var bullet_projectile_scene : PackedScene = preload("res://Scenes/bullet.tscn")
 
 var flying_effect_counter : float = 0.0
 var range_counter : float = 0.0
@@ -54,6 +55,8 @@ func hit(target : Enemy) -> void:
             queue_free()
 
 func apply_additional_status_effects(target : Enemy) -> void:
+    print("Adding Additional Status Effects!" + str(additional_status_effect))
+    
     if len(additional_status_effect) == 0:
         return
     

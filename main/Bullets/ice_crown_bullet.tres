@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dpc0m7nlasn3b"]
+
+[ext_resource type="Texture2D" uid="uid://dkx1jsio1brlc" path="res://Assets/ice_crown_back.png" id="1_blhvn"]
+[ext_resource type="Script" uid="uid://ur7f3gye7546" path="res://Bullets/ice_crown_bullet.gd" id="2_hgfye"]
+[ext_resource type="Texture2D" uid="uid://e51t2npm1xu8" path="res://Assets/ice_crown_side_view.png" id="3_6ssak"]
+
+[resource]
+script = ExtResource("2_hgfye")
+name = "Ice Crown Bullet"
+damage = 1.0
+knockback = 10.0
+speed = 700.0
+range = 0.5
+piercing = false
+recoil = 0.0
+description = "Apply slows. Your next two bullets apply slow."
+side_view_texture = ExtResource("3_6ssak")
+back_view_texture = ExtResource("1_blhvn")
+has_effect = true
+effect_duration = 1.8
+time_between_flying_effect = 1.0
+metadata/_custom_type_script = "uid://cnexkc647mh6q"

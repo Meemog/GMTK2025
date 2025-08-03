@@ -24,6 +24,7 @@ enum EFFECT_TYPE {ICE, FIRE, BLEED}
 @export var time_between_flying_effect : float = 1.0
 
 var status_effect_node_scene : PackedScene = preload("res://Scenes/status_effect_node.tscn")
+var bullet_projectile : BulletProjectile
 
 func shoot(player : Player) -> void:
     pass

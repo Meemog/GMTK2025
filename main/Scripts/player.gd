@@ -195,7 +195,10 @@ func shoot() -> void:
     bullet.range = new_temp_bullet.range
     bullet.knockback = new_temp_bullet.knockback
     bullet.piercing = new_temp_bullet.piercing
+    bullets[bullet_pointer].bullet_projectile = bullet
     bullet.data = bullets[bullet_pointer]
+    print("This is new_temp_bullet.additional_status_effect: "+str(new_temp_bullet.additional_status_effect))
+    bullet.additional_status_effect = new_temp_bullet.additional_status_effect
     add_sibling(bullet)
         
     bullet.shoot(self)
@@ -230,7 +233,7 @@ func apply_temp_bonuses(bonuses, temp_bullet : TempBullet) -> TempBullet:
                 "range":
                     temp_bullet.range *= bonueses_values[j]
                 "status_effect":
-                    temp_bullet.additional_status_effect.append(bonueses_values[j])
+                    temp_bullet.additional_status_effect.append_array(bonueses_values[j])
                 _:
                     pass
     

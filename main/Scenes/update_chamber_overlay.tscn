@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://8yxh4i3gbno6"]
+[gd_scene load_steps=20 format=3 uid="uid://8yxh4i3gbno6"]
 
 [ext_resource type="Script" uid="uid://crn4luwyay0cq" path="res://Scripts/BulletUI/update_chamber_overlay.gd" id="1_3et70"]
 [ext_resource type="Texture2D" uid="uid://h43o6qoaixia" path="res://Assets/bullets.png" id="1_m51wb"]
@@ -16,6 +16,9 @@
 [ext_resource type="Resource" uid="uid://db71nbvwxqu1d" path="res://Bullets/blank_bullet.tres" id="9_8snva"]
 [ext_resource type="Resource" uid="uid://07im6jk4rt80" path="res://Bullets/bludgeoning_bullet.tres" id="10_7lsod"]
 [ext_resource type="Script" uid="uid://b54mds0jphdth" path="res://Scenes/BulletUI/chamber_overlay_confirm_button.gd" id="10_x8hjv"]
+[ext_resource type="Resource" uid="uid://bjcdn6e6yy8n8" path="res://Bullets/shotgun_bullet.tres" id="11_nhiby"]
+[ext_resource type="Resource" uid="uid://rslg0u36fbc" path="res://Bullets/bounce_bullet.tres" id="12_a4oxr"]
+[ext_resource type="Resource" uid="uid://dpc0m7nlasn3b" path="res://Bullets/ice_crown_bullet.tres" id="13_7hb38"]
 
 [node name="UpdateChamberOverlay" type="Control"]
 layout_mode = 3
@@ -37,7 +40,7 @@ color = Color(0, 0, 0, 0.388235)
 
 [node name="BulletShop" type="Node2D" parent="." groups=["BULLET_UI_MANAGER"]]
 script = ExtResource("1_xriw6")
-bullet_types = Array[ExtResource("2_51cbe")]([ExtResource("3_rsory"), ExtResource("5_uw73f"), ExtResource("6_wtke8"), ExtResource("7_eiyvq"), ExtResource("8_i7sj7"), ExtResource("9_8snva"), ExtResource("10_7lsod")])
+bullet_types = Array[ExtResource("2_51cbe")]([ExtResource("3_rsory"), ExtResource("5_uw73f"), ExtResource("6_wtke8"), ExtResource("7_eiyvq"), ExtResource("8_i7sj7"), ExtResource("9_8snva"), ExtResource("10_7lsod"), ExtResource("11_nhiby"), ExtResource("12_a4oxr"), ExtResource("13_7hb38")])
 
 [node name="Revolver" type="Node2D" parent="."]
 position = Vector2(950, 620)
@@ -131,7 +134,7 @@ custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
 size_flags_horizontal = 10
 mouse_filter = 2
-max_value = 20.0
+max_value = 30.0
 step = 0.1
 value = 20.0
 show_percentage = false
