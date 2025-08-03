@@ -28,6 +28,8 @@ func take_damage(damage : float) -> void:
         hitpoints -= damage
         $ProgressBar.value = hitpoints
         hit_flash_animation_player.play("hit_flash")
+        $Hit.pitch_scale = randf_range(0.9, 1.1)
+        $Hit.play()
         if hitpoints <= 0 and not dead:
             dead = true
             await get_tree().create_timer(0.2).timeout

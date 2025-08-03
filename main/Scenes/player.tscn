@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b1g1pjlvoxks4"]
+[gd_scene load_steps=29 format=3 uid="uid://b1g1pjlvoxks4"]
 
 [ext_resource type="Script" uid="uid://djbh478p5uo2r" path="res://Scripts/player.gd" id="1_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://br3fu8n5ergvx" path="res://Scenes/bullet.tscn" id="2_tx1dd"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://da4ubi4qkyqic" path="res://Assets/cock.mp3" id="7_h4iuc"]
 [ext_resource type="AudioStream" uid="uid://ccoi63iewrtt5" path="res://Assets/dash.wav" id="8_fd4e3"]
 [ext_resource type="AudioStream" uid="uid://vxevarck5gwi" path="res://Assets/recharge.wav" id="9_qqcod"]
+[ext_resource type="AudioStream" uid="uid://cwuymcmd3nuv4" path="res://Assets/bomb.ogg" id="12_pu2lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pu2lt"]
 shader = ExtResource("5_gymyn")
@@ -198,6 +199,9 @@ volume_db = -8.432
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 pitch_scale = 0.91
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_pu2lt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 51)

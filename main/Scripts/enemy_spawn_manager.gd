@@ -2,6 +2,7 @@ class_name EnemySpawnManager
 extends Node2D
 
 @export var player : Player
+
 var group_size : int = 3
 var group_variants : int = 1
 
@@ -25,21 +26,30 @@ func reset() -> void:
     remove_all_enemies()
 
 func summon_wave(round_num : int) -> void:
-    number_of_enemies = round_num + 2
+    number_of_enemies = int((round_num + 2)*get_round_mod(round_num)) 
     while number_of_enemies > 0:
         var new_group_size = group_size + randi_range(group_variants*-1, group_variants)
-        summon_group(new_group_size)
+        summon_group(new_group_size, round_num)
         number_of_enemies -= new_group_size
         enemies_remaining += new_group_size
+        await get_tree().create_timer(randf_range(2.0, 5.0)).timeout
 
-func summon_group(group_size : int) -> void:
+func get_round_mod(round_num : int) -> float:
+    if round_num <= 3:
+        return 1.0
+    elif round_num > 3 and round_num <= 5:
+        return 1.5
+    else:
+        return 2.0
+
+func summon_group(group_size : int, round_num : int) -> void:
     var group_summon_point : Vector2 = get_random_point_from_start(player.global_position, spawn_distance)
     for i in range(group_size):
         var enemy_summon_point : Vector2 = get_random_point_from_start(group_summon_point, group_seperation_distance)
         var new_enemy : Enemy = enemy_scene.instantiate()
         new_enemy.position = enemy_summon_point
         new_enemy.player = player
-        new_enemy.speed = enemy_speed
+        new_enemy.speed = enemy_speed * (1 + (float(round_num / 100) * 1.5))
         add_child(new_enemy)
 
 func get_random_point_from_start(start_point : Vector2, distance : float) -> Vector2:

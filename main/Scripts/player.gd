@@ -248,6 +248,7 @@ func knockback_all_enemies_effect() -> void:
 
 func take_damage(damage : int) -> void:
     if current_invincibility_time <= 0:
+        $Hit.play()
         health -= damage
         Events.player_health_updated.emit(health)
         hit_flash_animation_player.play("hit_flash")

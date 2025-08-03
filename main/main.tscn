@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cvec1d7cq015b"]
+[gd_scene load_steps=15 format=4 uid="uid://cvec1d7cq015b"]
 
 [ext_resource type="Script" uid="uid://ctmpka1t8gdma" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ciwp82oi167xb" path="res://Scenes/main_menu.tscn" id="2_0xm2m"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cl80b3jtcgufm" path="res://Scenes/health_bar.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://beic46f526tao" path="res://Scenes/death_overlay.tscn" id="11_efxa6"]
 [ext_resource type="Texture2D" uid="uid://ucj72oj61ckf" path="res://Assets/point_light_texture.jpg" id="13_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://cti7kmdvg8yin" path="res://Assets/anticipation.ogg" id="14_w48qg"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
@@ -55,5 +56,10 @@ script = ExtResource("8_dg77c")
 [node name="UpdateChamberOverlay" parent="UiManager" instance=ExtResource("6_272bh")]
 
 [node name="WaveCounter" parent="UiManager" instance=ExtResource("8_5vw27")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_w48qg")
+volume_db = -18.0
+autoplay = true
 
 [connection signal="play_btn_clicked" from="UiManager/MainMenu" to="." method="_on_main_menu_play_btn_clicked"]
