@@ -21,6 +21,7 @@ class TempBullet:
 @onready var gun_sprite: AnimatedSprite2D = $GunSprite
 @onready var hit_flash_animation_player: AnimationPlayer = $HitFlashAnimationPlayer
 @onready var on_hit_particle_scene : PackedScene = preload("res://Scenes/player_on_hit_particle_effect.tscn")
+@onready var foot_step_animation_player: AnimationPlayer = $FootStepAnimationPlayer
 
 @export var speed = 400
 @export var dash_cooldown = 4
@@ -82,6 +83,7 @@ func _process(delta: float) -> void:
     if inp_velocity.length() > 0:
         inp_velocity = inp_velocity.normalized() * speed
         $BodySprite.animation = "walk"
+        foot_step_animation_player.play("foot_step")
         $BodySprite.scale.x = abs($BodySprite.scale.x) * -1 if inp_velocity.x < 0 else abs($BodySprite.scale.x)
         if inp_velocity.x > 0:
             $BodySprite.scale.x = abs($BodySprite.scale.x)
@@ -151,6 +153,10 @@ func reset() -> void:
     body_sprite.show()
     
     active = true
+
+func play_footstep_sound_fx() -> void:
+    $Footsteps.pitch_scale = randf_range(0.85, 1.15)
+    $Footsteps.play()
  
 func start_reload():
     bullet_pointer = 0
