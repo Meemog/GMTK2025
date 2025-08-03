@@ -8,6 +8,7 @@ var speed
 var hitpoints = 30
 var damage : int = 1
 var vector_to_player: Vector2 = Vector2.ONE
+var dead : bool = false
 
 func _ready() -> void:
     $Sprite.play()
@@ -27,7 +28,8 @@ func take_damage(damage : float) -> void:
         hitpoints -= damage
         $ProgressBar.value = hitpoints
         hit_flash_animation_player.play("hit_flash")
-        if hitpoints <= 0:
+        if hitpoints <= 0 and not dead:
+            dead = true
             await get_tree().create_timer(0.2).timeout
             Events.screen_shake_requested.emit(5, 0.2)
             die()
