@@ -23,6 +23,9 @@ Events="*res://Scripts/Events.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [global_group]
 
@@ -78,3 +81,4 @@ pause={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
