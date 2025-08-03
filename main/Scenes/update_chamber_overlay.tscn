@@ -216,7 +216,10 @@ theme_override_constants/margin_bottom = 100
 layout_mode = 2
 
 [node name="Confirm" type="Button" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
 text = "Finished"
 script = ExtResource("10_x8hjv")
 
@@ -233,6 +236,7 @@ theme_override_constants/margin_bottom = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
 text = "Select One Bullet"
 fit_content = true
 horizontal_alignment = 1
